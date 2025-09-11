@@ -12,25 +12,42 @@ const PlayBtn = ({
 }) => {
   const ref = useRef(null);
 
-  if (ref.current) {
-    if (isPlaying) {
-      ref.current.play();
-    } else {
-      ref.current.pause();
-    }
-  }
+  // ✅ Pick correct audio source (Shazam or Apple Music)
+  const audioSrc =
+    activeSong?.hub?.actions?.find((a) => a.type === "uri")?.uri || // Shazam
+    activeSong?.attributes?.previews?.[0]?.url || // Apple Music
+    "";
 
+  // ✅ Handle play / pause
   useEffect(() => {
-    ref.current.volume = volume;
+    if (ref.current) {
+      if (isPlaying) {
+        ref.current.play().catch((err) => {
+          console.warn("Audio play failed:", err);
+        });
+      } else {
+        ref.current.pause();
+      }
+    }
+  }, [isPlaying, audioSrc]);
+
+  // ✅ Sync volume
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.volume = volume;
+    }
   }, [volume]);
 
+  // ✅ Sync seek time
   useEffect(() => {
-    ref.current.currentTime = seekTime;
+    if (ref.current && seekTime >= 0) {
+      ref.current.currentTime = seekTime;
+    }
   }, [seekTime]);
 
   return (
     <audio
-      src={activeSong?.hub?.actions[1]?.uri}
+      src={audioSrc}
       ref={ref}
       loop={repeat}
       onEnded={onEnded}

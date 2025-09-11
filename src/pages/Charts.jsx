@@ -23,10 +23,10 @@ const Charts = () => {
 
   return (
     <div className="flex flex-col">
-      <h2 className="font-bold text-3xl text-white text-left mt-4 mb-10">Discover Top Charts</h2>
+      <h2 className="mt-4 mb-10 text-3xl font-bold text-left text-white">Discover Top Charts</h2>
 
-      <div className="flex flex-wrap justify-start md:justify-center gap-8">
-        {data.tracks?.map((song, i) => (
+      <div className="flex flex-wrap justify-start gap-8 md:justify-center">
+        {data?.tracks?.map((song, i) => (
           <SongCard
             key={song.key}
             song={song}

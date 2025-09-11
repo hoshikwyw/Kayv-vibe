@@ -15,27 +15,27 @@ import Search from './pages/Search'
 const App = () => {
   const {activeSong} = useSelector((state) => state.player)
   return (
-    <div className=' flex relative'>
+    <div className='relative flex '>
       <Sidebar />
       <div className=' flex-1 flex flex-col bg-[#94A684]'>
         <Searchbar />
         <div className="px-6 flex xl:flex-row flex-col-reverse h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar">
-          <div className="flex-1 h-fit pb-40">
+          <div className="flex-1 pb-40 h-fit">
             <Routes>
               <Route path='/' element={<Discover />} />
               <Route path='/artists/:id' element={<ArtistDetail />} />
               <Route path='/songs/:songid' element={<SongDetail />} />
-              <Route path='/artists' element={<Artists />} />
-              <Route path='/charts' element={<Charts />} />
+              {/* <Route path='/artists' element={<Artists />} /> */}
+              {/* <Route path='/charts' element={<Charts />} /> */}
               <Route path='/search/:searchTerm' element={<Search />} />
             </Routes>
           </div>
-          <div className="xl:sticky relative top-0 h-fit">
+          {/* <div className="relative top-0 xl:sticky h-fit">
             <TopPlay />
-          </div>
+          </div> */}
         </div>
       </div>
-      {activeSong?.title && (
+      {activeSong?.attributes?.name && (
         <div className=' fixed h-24 bottom-0 left-0 right-0 flex bg-gradient-to-br from-white/10 to-[#94A684] backdrop-blur-lg rounded-t-3xl z-10'>
           <MusicPlayer />
         </div>
