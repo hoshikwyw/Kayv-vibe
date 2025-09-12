@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { genres } from "../assets/constants";
 import SongCard from "../components/SongCard";
-import { useGetChartTracksQuery } from "../redux/services/dataFetch";
+import { useGetChartTracksQuery, useGetCitiesQuery } from "../redux/services/dataFetch";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import { useSelector } from "react-redux";
+import { skipToken } from "@reduxjs/toolkit/query"; // ✅ import skipToken
 
 const Discover = () => {
   const [genre, setGenre] = useState("POP");
   const [page, setPage] = useState(1);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
-  console.log("activeSong:", activeSong);
-  console.log("isPlaying:", isPlaying);
-
   const { data, isFetching, isLoading, error } = useGetChartTracksQuery(
     genre ? { genre } : skipToken
   );
+
+  const { data: cities } = useGetCitiesQuery();
 
   const pageSize = 20;
   const total = data?.length || 0;
@@ -27,7 +27,7 @@ const Discover = () => {
   return (
     <div className="flex flex-col ">
       <div className="flex flex-col items-center justify-between w-full mt-4 mb-10 md:flex-row">
-        <h2 className=" font-bold text-3xl text-[#FFEEF4] main-text">Discover</h2>
+        <h2 className="font-bold text-3xl text-[#FFEEF4] main-text">Discover</h2>
         <select
           value={genre}
           onChange={(e) => {
@@ -37,16 +37,30 @@ const Discover = () => {
           className="px-2 py-1 mt-0 text-sm text-gray-500 rounded-lg outline-none bg-opacity-60 backdrop-blur-lg md:mt-5"
         >
           {genres.map((g) => (
-            <option key={g.value} value={g.value} className="bg-[#FFEEF4] main-text">
+            <option
+              key={g.value}
+              value={g.value}
+              className="bg-[#FFEEF4] main-text"
+            >
               {g.title}
             </option>
           ))}
         </select>
       </div>
 
-      {isFetching || isLoading ? <Loader /> : error ? <Error /> : null}
-
-      {!isFetching && !isLoading && !error && (
+      {/* ✅ Proper loading & error handling */}
+      {isFetching || isLoading ? (
+        <Loader />
+      ) : error ? (
+        // ✅ Custom 429 error handling
+        error?.status === 429 ? (
+          <p className="font-semibold text-center text-black ">
+            Too many requests — take some rest ☕
+          </p>
+        ) : (
+          <Error />
+        )
+      ) : (
         <>
           {/* ✅ Show total count */}
           <p className="mb-4 text-sm text-gray-300">
@@ -85,9 +99,7 @@ const Discover = () => {
             </button>
           </div>
         </>
-
       )}
-
     </div>
   );
 };

@@ -1,0 +1,218 @@
+[
+    {
+        "key": "1",
+        "title": "Midnight City",
+        "subtitle": "M83",
+        "artists": [
+            {
+                "adamid": "1001"
+            }
+        ],
+        "genres": {
+            "primary": "Electronic"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1519677100203-a0e668c92439?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1519677100203-a0e668c92439?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Midnight City",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1519677100203-a0e668c92439?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-3s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-3s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "2",
+        "title": "Blinding Lights",
+        "subtitle": "The Weeknd",
+        "artists": [
+            {
+                "adamid": "1002"
+            }
+        ],
+        "genres": {
+            "primary": "Pop"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1474433188271-d3f339f41911?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1474433188271-d3f339f41911?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Blinding Lights",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1474433188271-d3f339f41911?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-6s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-6s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "3",
+        "title": "Lose Yourself",
+        "subtitle": "Eminem",
+        "artists": [
+            {
+                "adamid": "1003"
+            }
+        ],
+        "genres": {
+            "primary": "Hip-Hop"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Lose Yourself",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-9s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-9s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "4",
+        "title": "Viva La Vida",
+        "subtitle": "Coldplay",
+        "artists": [
+            {
+                "adamid": "1004"
+            }
+        ],
+        "genres": {
+            "primary": "Alternative"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Viva La Vida",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-12s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-12s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "5",
+        "title": "Stay",
+        "subtitle": "The Kid LAROI, Justin Bieber",
+        "artists": [
+            {
+                "adamid": "1005"
+            }
+        ],
+        "genres": {
+            "primary": "Pop"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Stay",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-15s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-15s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "6",
+        "title": "Starboy",
+        "subtitle": "The Weeknd, Daft Punk",
+        "artists": [
+            {
+                "adamid": "1002"
+            }
+        ],
+        "genres": {
+            "primary": "Pop"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Starboy",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-30s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-30s.mp3"
+                }
+            ]
+        }
+    }
+]

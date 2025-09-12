@@ -49,6 +49,7 @@ const PlayBtn = ({
     <audio
       src={audioSrc}
       ref={ref}
+      preload="auto"
       loop={repeat}
       onEnded={onEnded}
       onTimeUpdate={onTimeUpdate}

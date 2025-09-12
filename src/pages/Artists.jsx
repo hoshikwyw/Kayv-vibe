@@ -7,27 +7,27 @@ import ArtistCard from '../components/ArtistCard'
 
 const Artists = () => {
 
-  const {data , isFetching , isLoading , error} = useGetChartTracksQuery()
-    const {activeSong, isPlaying} = useSelector(state => state.player)
+  const { data, isFetching, isLoading, error } = useGetChartTracksQuery()
+  const { activeSong, isPlaying } = useSelector(state => state.player)
 
-    if (isFetching) {
-        return <Loader />
-    } 
+  if (isFetching) {
+    return <Loader />
+  }
 
-    if(isLoading) {
-        return <Loader />
-    }
+  if (isLoading) {
+    return <Loader />
+  }
 
-    if(error) {
-        return <Error />
-    }
+  if (error) {
+    return <Error />
+  }
 
   return (
     <div className="flex flex-col">
       <h2 className="mt-4 mb-10 text-3xl font-bold text-left text-white">Top artists</h2>
 
       <div className="flex flex-wrap justify-center gap-8 sm:justify-start">
-        {data?.tracks?.map((track) => <ArtistCard key={track.key} track={track} />)}
+        {(data?.tracks ?? data)?.map((track) => <ArtistCard key={track.key} track={track} />)}
       </div>
     </div>
   )

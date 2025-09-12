@@ -6,27 +6,27 @@ import Error from '../components/Error'
 import SongCard from '../components/SongCard'
 
 const Charts = () => {
-    const {data , isFetching , isLoading , error} = useGetChartTracksQuery()
-    const {activeSong, isPlaying} = useSelector(state => state.player)
+  const { data, isFetching, isLoading, error } = useGetChartTracksQuery()
+  const { activeSong, isPlaying } = useSelector(state => state.player)
 
-    if (isFetching) {
-        return <Loader />
-    } 
+  if (isFetching) {
+    return <Loader />
+  }
 
-    if(isLoading) {
-        return <Loader />
-    }
+  if (isLoading) {
+    return <Loader />
+  }
 
-    if(error) {
-        return <Error />
-    }
+  if (error) {
+    return <Error />
+  }
 
   return (
     <div className="flex flex-col">
       <h2 className="mt-4 mb-10 text-3xl font-bold text-left text-white">Discover Top Charts</h2>
 
       <div className="flex flex-wrap justify-start gap-8 md:justify-center">
-        {data?.tracks?.map((song, i) => (
+        {(data?.tracks ?? data)?.map((song, i) => (
           <SongCard
             key={song.key}
             song={song}

@@ -10,10 +10,11 @@ import TopPlay from './components/TopPlay'
 import MusicPlayer from './pages/MusicPlayer'
 import { useSelector } from 'react-redux'
 import Charts from './pages/Charts'
+import Liked from './pages/Liked'
 import Search from './pages/Search'
 
 const App = () => {
-  const {activeSong} = useSelector((state) => state.player)
+  const { activeSong } = useSelector((state) => state.player)
   return (
     <div className='relative flex '>
       <Sidebar />
@@ -25,14 +26,15 @@ const App = () => {
               <Route path='/' element={<Discover />} />
               <Route path='/artists/:id' element={<ArtistDetail />} />
               <Route path='/songs/:songid' element={<SongDetail />} />
-              {/* <Route path='/artists' element={<Artists />} /> */}
-              {/* <Route path='/charts' element={<Charts />} /> */}
+              <Route path='/artists' element={<Artists />} />
+              <Route path='/charts' element={<Charts />} />
+              <Route path='/liked' element={<Liked />} />
               <Route path='/search/:searchTerm' element={<Search />} />
             </Routes>
           </div>
-          {/* <div className="relative top-0 xl:sticky h-fit">
+          <div className="relative top-0 xl:sticky h-fit">
             <TopPlay />
-          </div> */}
+          </div>
         </div>
       </div>
       {activeSong?.attributes?.name && (

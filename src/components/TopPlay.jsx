@@ -27,13 +27,13 @@ const TopPlay = () => {
     divRef.current.scrollIntoView({ behavior: "smooth" });
   });
 
-  const topPlays = data?.tracks?.slice(0, 5);
+  const topPlays = (data?.tracks ?? data)?.slice(0, 5);
 
   const handlePauseBtn = () => {
     dispatch(playPause(false));
   };
 
-  const handlePlayBtn = (song,i) => {
+  const handlePlayBtn = (song, i) => {
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
@@ -60,7 +60,7 @@ const TopPlay = () => {
               isPlaying={isPlaying}
               activeSong={activeSong}
               handlePauseBtn={handlePauseBtn}
-              handlePlayBtn={() => handlePlayBtn(song,i) }
+              handlePlayBtn={() => handlePlayBtn(song, i)}
             />
           ))}
         </div>
