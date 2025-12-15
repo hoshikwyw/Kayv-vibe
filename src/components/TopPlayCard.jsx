@@ -24,7 +24,7 @@ const TopPlayCard = ({
             <p className=" text-lg font-semibold text-white">{song?.title}</p>
           </Link>
           <Link to={`/artists/${song?.artists[0].adamid}`}>
-            <p className=" text-sm font-semibold text-[#fffc] mt-1">
+            <p className=" text-sm font-semibold text-text-muted mt-1">
               {song?.subtitle}
             </p>
           </Link>

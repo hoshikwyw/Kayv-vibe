@@ -27,7 +27,7 @@ const Discover = () => {
   return (
     <div className="flex flex-col ">
       <div className="flex flex-col items-center justify-between w-full mt-4 mb-10 md:flex-row">
-        <h2 className="font-bold text-3xl text-[#FFEEF4] main-text">Discover</h2>
+        <h2 className="font-bold text-3xl text-text-primary main-text">Discover</h2>
         <select
           value={genre}
           onChange={(e) => {
@@ -40,7 +40,7 @@ const Discover = () => {
             <option
               key={g.value}
               value={g.value}
-              className="bg-[#FFEEF4] main-text"
+              className="bg-text-primary main-text"
             >
               {g.title}
             </option>
@@ -86,14 +86,14 @@ const Discover = () => {
             <button
               disabled={page === 1}
               onClick={() => setPage((p) => p - 1)}
-              className="px-4 py-2 text-sm font-medium text-white bg-pink-500 rounded-lg disabled:opacity-50"
+              className="px-4 py-2 text-sm font-medium text-text-secondary bg-accent rounded-lg disabled:opacity-50 hover:bg-accent-hover transition-colors"
             >
               Previous
             </button>
             <button
               disabled={end >= total}
               onClick={() => setPage((p) => p + 1)}
-              className="px-4 py-2 text-sm font-medium text-white bg-pink-500 rounded-lg disabled:opacity-50"
+              className="px-4 py-2 text-sm font-medium text-text-secondary bg-accent rounded-lg disabled:opacity-50 hover:bg-accent-hover transition-colors"
             >
               Next
             </button>

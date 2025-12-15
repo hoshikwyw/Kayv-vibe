@@ -1,0 +1,291 @@
+[
+    {
+        "key": "1",
+        "title": "As It Was",
+        "subtitle": "Harry Styles",
+        "artists": [
+            {
+                "adamid": "2001"
+            }
+        ],
+        "genres": {
+            "primary": "Pop"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "As It Was",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-3s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-3s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "2",
+        "title": "Heat Waves",
+        "subtitle": "Glass Animals",
+        "artists": [
+            {
+                "adamid": "2002"
+            }
+        ],
+        "genres": {
+            "primary": "Indie"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Heat Waves",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-6s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-6s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "3",
+        "title": "Watermelon Sugar",
+        "subtitle": "Harry Styles",
+        "artists": [
+            {
+                "adamid": "2001"
+            }
+        ],
+        "genres": {
+            "primary": "Pop"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Watermelon Sugar",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-9s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-9s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "4",
+        "title": "Levitating",
+        "subtitle": "Dua Lipa",
+        "artists": [
+            {
+                "adamid": "2003"
+            }
+        ],
+        "genres": {
+            "primary": "Pop"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Levitating",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-12s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-12s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "5",
+        "title": "Good 4 U",
+        "subtitle": "Olivia Rodrigo",
+        "artists": [
+            {
+                "adamid": "2004"
+            }
+        ],
+        "genres": {
+            "primary": "Pop"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Good 4 U",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-15s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-15s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "6",
+        "title": "Industry Baby",
+        "subtitle": "Lil Nas X, Jack Harlow",
+        "artists": [
+            {
+                "adamid": "2005"
+            }
+        ],
+        "genres": {
+            "primary": "Hip-Hop"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Industry Baby",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-30s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-30s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "7",
+        "title": "Shivers",
+        "subtitle": "Ed Sheeran",
+        "artists": [
+            {
+                "adamid": "2006"
+            }
+        ],
+        "genres": {
+            "primary": "Pop"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1474433188271-d3f339f41911?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1474433188271-d3f339f41911?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Shivers",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1474433188271-d3f339f41911?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-3s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-3s.mp3"
+                }
+            ]
+        }
+    },
+    {
+        "key": "8",
+        "title": "Stay",
+        "subtitle": "The Kid LAROI, Justin Bieber",
+        "artists": [
+            {
+                "adamid": "2007"
+            }
+        ],
+        "genres": {
+            "primary": "Pop"
+        },
+        "images": {
+            "coverart": "https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?q=80&w=800&auto=format&fit=crop",
+            "background": "https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?q=80&w=1200&auto=format&fit=crop"
+        },
+        "attributes": {
+            "name": "Stay",
+            "artwork": {
+                "url": "https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?q=80&w=800&auto=format&fit=crop"
+            },
+            "previews": [
+                {
+                    "url": "https://samplelib.com/lib/preview/mp3/sample-6s.mp3"
+                }
+            ]
+        },
+        "hub": {
+            "actions": [
+                {
+                    "type": "uri",
+                    "uri": "https://samplelib.com/lib/preview/mp3/sample-6s.mp3"
+                }
+            ]
+        }
+    }
+]
+

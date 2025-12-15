@@ -11,7 +11,7 @@ const RelateSong = ({
 }) => {
   return (
     <div className=" flex flex-col">
-      <h1 className=" font-bold text-xl text-[#FFEEF4] main-text">
+      <h1 className=" font-bold text-xl text-text-primary main-text">
         Related Songs:{" "}
       </h1>
       <div className=" mt-6 w-full flex flex-col">

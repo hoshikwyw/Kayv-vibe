@@ -19,7 +19,7 @@ const SongCard = ({ song, i, isPlaying, activeSong, data }) => {
   };
 
   return (
-    <div className=" flex flex-col w-[180px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer shadow-md">
+    <div className=" flex flex-col w-[calc(50%-1rem)] sm:w-[180px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer shadow-md">
       <div className="relative w-full h-40 group">
         <div
           className={` absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${activeSong?.title === song.attributes.name

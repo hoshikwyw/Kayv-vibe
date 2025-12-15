@@ -1,12 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import SongCard from '../components/SongCard'
-import tracksMock from '../mocks/tracks.json'
+import likedMock from '../mocks/liked.json'
 
-// Simple liked page using local state for now (mocked)
 const Liked = () => {
     const { activeSong, isPlaying } = useSelector((state) => state.player)
-    const likedSongs = tracksMock // could be replaced with persisted likes
+    const likedSongs = likedMock
 
     return (
         <div className="flex flex-col">

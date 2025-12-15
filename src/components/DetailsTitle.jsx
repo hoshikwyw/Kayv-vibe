@@ -6,7 +6,7 @@ const DetailsTitle = ({ artistId, artistData, songData }) => {
 
   return (
     <div className=" relative w-full flex flex-col">
-      <div className=" w-full bg-gradient-to-l from-transparent to-[#839983]/90 h-48 md:h-28">
+      <div className=" w-full bg-gradient-to-l from-transparent to-secondary/90 h-48 md:h-28">
         <div className=" absolute inset-0 flex items-center">
           <img
             src={

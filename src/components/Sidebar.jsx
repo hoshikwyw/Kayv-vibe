@@ -12,7 +12,7 @@ const NavLinks = ({ handleClick }) => (
         key={item.name}
         to={item.to}
         onClick={() => handleClick && handleClick()}
-        className=" flex flex-row justify-start items-center my-8 text-sm font-semibold text-white hover:text-[#8cf38c]">
+        className=" flex flex-row justify-start items-center my-8 text-sm font-semibold text-text-secondary hover:text-accent">
         <item.icon className=" w-6 h-6 mr-2" />
         {item.name}
       </NavLink>
@@ -25,7 +25,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className=" md:flex hidden flex-col w-[220px] pt-5 pb-10 px-4 bg-[#839983]">
+      <div className=" md:flex hidden flex-col w-[220px] pt-5 pb-10 px-4 bg-secondary">
         <Link to={"/"}>
           <div className=" flex flex-col items-center justify-center cursor-pointer">
             <img
@@ -33,7 +33,7 @@ const Sidebar = () => {
               alt=""
               className=" w-fit h-12 rounded-full object-contain"
             />
-            <p className=" font-bold text-xl text-[#FFEEF4] main-text">
+            <p className=" font-bold text-xl text-text-primary main-text">
               Oro's music
             </p>
           </div>
@@ -54,7 +54,7 @@ const Sidebar = () => {
         )}
       </div>
       <div
-        className={` absolute top-0 h-screen w-2/3 bg-gradient-to-r from-[#859e8583] to-[#8eaa76af] backdrop-blur-xl z-10 p-6 md:hidden smooth-transition ${
+        className={` absolute top-0 h-screen w-2/3 bg-gradient-to-r from-background-tertiary to-secondary/70 backdrop-blur-xl z-10 p-6 md:hidden smooth-transition ${
           phviewOpen ? "left-0" : "-left-full"
         }`}>
         <Link to={"/"}>
@@ -64,7 +64,7 @@ const Sidebar = () => {
               alt=""
               className=" w-fit h-12 rounded-full object-contain"
             />
-            <p className=" font-bold text-xl text-[#FFEEF4] main-text">
+            <p className=" font-bold text-xl text-text-primary main-text">
               Oro's music
             </p>
           </div>
