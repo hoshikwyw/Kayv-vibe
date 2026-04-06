@@ -1,4 +1,4 @@
-# Retro Music Player
+# Kayv Vibe
 
 A retro-themed music player web application built with React, featuring a vintage UI design with thick borders, offset shadows, and warm orange accents.
 

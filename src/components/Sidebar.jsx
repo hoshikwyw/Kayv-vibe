@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { links } from "../assets/constants";
 import { RiCloseLine } from "react-icons/ri";
-import { BsMusicNoteBeamed } from "react-icons/bs";
+
 
 const SidebarContext = createContext();
 
@@ -41,14 +41,14 @@ const NavLinks = ({ handleClick }) => (
 
 const Logo = () => (
   <div className="flex items-center gap-2.5">
-    <div className="w-9 h-9 bg-primary rounded-[10px] border-2 border-border shadow-retro-sm flex items-center justify-center">
-      <BsMusicNoteBeamed className="text-white text-sm" />
+    <div className="w-9 h-9 rounded-[10px] border-2 border-border shadow-retro-sm flex items-center justify-center overflow-hidden">
+      <img src="/favicon.svg" alt="Kayv Vibe" className="w-full h-full" />
     </div>
     <div>
       <h1 className="font-bold text-base text-text-primary leading-tight tracking-tight">
-        Music Player
+        Kayv Vibe
       </h1>
-      <p className="text-[9px] text-text-muted font-retro-mono tracking-wider">RETRO VIBES</p>
+      <p className="text-[9px] text-text-muted font-retro-mono tracking-wider">FEEL THE VIBE</p>
     </div>
   </div>
 );
