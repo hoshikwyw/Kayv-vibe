@@ -1,9 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { BsMusicNoteBeamed } from 'react-icons/bs'
 
 const Track = ({ isPlaying, isActive, activeSong }) => {
+  const navigate = useNavigate()
+
   return (
-    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1 sm:flex-none sm:w-[200px] lg:w-[260px]">
+    <div
+      onClick={() => navigate('/now-playing')}
+      className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1 sm:flex-none sm:w-[200px] lg:w-[260px] cursor-pointer group"
+    >
       <div
         className={`${
           isPlaying && isActive ? "animate-spin-slow" : ""
@@ -20,7 +26,7 @@ const Track = ({ isPlaying, isActive, activeSong }) => {
         )}
       </div>
       <div className="min-w-0 flex-1">
-        <p className="text-[12px] sm:text-[13px] font-bold text-text-primary truncate">
+        <p className="text-[12px] sm:text-[13px] font-bold text-text-primary truncate group-hover:text-primary transition-colors">
           {activeSong?.attributes?.name || "No playing song"}
         </p>
         <p className="text-[10px] sm:text-[11px] text-text-muted truncate mt-0.5">

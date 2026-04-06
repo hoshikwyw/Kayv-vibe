@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux'
 import Charts from './pages/Charts'
 import Liked from './pages/Liked'
 import Search from './pages/Search'
+import NowPlaying from './pages/NowPlaying'
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player)
@@ -30,12 +31,14 @@ const App = () => {
           <div className={`flex-1 min-w-0 px-3 sm:px-4 md:px-5 pt-3 sm:pt-4 ${hasPlayer ? 'pb-24 sm:pb-28' : 'pb-6'}`}>
             <Routes>
               <Route path='/' element={<Discover />} />
+              <Route path='/discover' element={<Discover />} />
               <Route path='/artists/:id' element={<ArtistDetail />} />
               <Route path='/songs/:songid' element={<SongDetail />} />
               <Route path='/artists' element={<Artists />} />
               <Route path='/charts' element={<Charts />} />
               <Route path='/liked' element={<Liked />} />
               <Route path='/search/:searchTerm' element={<Search />} />
+              <Route path='/now-playing' element={<NowPlaying />} />
             </Routes>
           </div>
           <div className="hidden lg:block lg:sticky lg:top-0 self-start lg:max-h-[calc(100vh-48px)] lg:overflow-y-auto hide-scrollbar flex-shrink-0 lg:pr-4 lg:pt-4">
