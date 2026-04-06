@@ -44,7 +44,7 @@ const App = () => {
         </div>
       </div>
       {hasPlayer && (
-        <div className="fixed bottom-0 left-0 right-0 flex bg-card border-t-2 border-border z-10 shadow-[0_-4px_16px_rgba(0,0,0,0.05)] h-[60px] sm:h-[72px]">
+        <div className="fixed bottom-0 left-0 md:left-[210px] right-0 flex bg-card border-t-2 border-border z-10 shadow-[0_-4px_16px_rgba(0,0,0,0.05)] h-[60px] sm:h-[72px]">
           <MusicPlayer />
         </div>
       )}
