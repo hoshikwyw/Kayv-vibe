@@ -61,8 +61,11 @@ const Discover = () => {
         )
       ) : (
         <>
-          <div className="retro-badge mb-3 sm:mb-4 text-[10px] sm:text-xs">
-            {Math.min(end, total)} of {total} songs
+          <div className="flex items-center gap-3 mb-3 sm:mb-4">
+            <div className="retro-badge bg-surface border-2 border-border px-3 py-1 text-[10px] sm:text-xs tracking-wide font-retro-mono">
+              {Math.min(end, total)} of {total} songs
+            </div>
+            <div className="flex-1 h-[2px] bg-border opacity-30 rounded-full" />
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">

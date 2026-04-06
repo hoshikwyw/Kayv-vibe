@@ -11,13 +11,11 @@ import {
   BsMusicNoteBeamed,
   BsChevronDown,
   BsHeadphones,
-} from "react-icons/bs";
-import { MdSkipNext, MdSkipPrevious, MdQueueMusic } from "react-icons/md";
-import {
   BsFillVolumeUpFill,
   BsVolumeDownFill,
   BsFillVolumeMuteFill,
 } from "react-icons/bs";
+import { MdSkipNext, MdSkipPrevious, MdQueueMusic } from "react-icons/md";
 
 const NowPlaying = () => {
   const dispatch = useDispatch();
@@ -78,21 +76,19 @@ const NowPlaying = () => {
   return (
     <div className="flex flex-col items-center max-w-lg mx-auto w-full">
       {/* Header */}
-      <div className="w-full flex items-center justify-between mb-6 sm:mb-8">
+      <div className="w-full flex items-center justify-between mb-4 sm:mb-6">
         <button
           onClick={() => navigate(-1)}
-          className="w-9 h-9 flex items-center justify-center rounded-[10px] border-2 border-border bg-card hover:bg-card-hover transition-colors"
+          className="w-9 h-9 flex items-center justify-center rounded-[10px] border-2 border-border bg-card hover:bg-card-hover transition-colors flex-shrink-0"
         >
           <BsChevronDown className="text-text-primary text-sm" />
         </button>
-        <div className="text-center">
-          <p className="text-[10px] font-bold text-text-muted font-retro-mono tracking-widest">
-            NOW PLAYING
-          </p>
-        </div>
+        <p className="text-[10px] font-bold text-text-muted font-retro-mono tracking-widest">
+          NOW PLAYING
+        </p>
         <button
           onClick={() => setShowQueue(!showQueue)}
-          className={`w-9 h-9 flex items-center justify-center rounded-[10px] border-2 border-border transition-colors ${
+          className={`w-9 h-9 flex items-center justify-center rounded-[10px] border-2 border-border transition-colors flex-shrink-0 ${
             showQueue ? "bg-primary text-white" : "bg-card hover:bg-card-hover text-text-primary"
           }`}
         >
@@ -100,21 +96,78 @@ const NowPlaying = () => {
         </button>
       </div>
 
-      {/* Album Art */}
-      <div className={`w-[240px] h-[240px] sm:w-[300px] sm:h-[300px] rounded-retro border-2 border-border shadow-retro overflow-hidden mb-6 sm:mb-8 ${
-        isPlaying ? "animate-[spin_20s_linear_infinite]" : ""
-      }`} style={{ animationPlayState: isPlaying ? "running" : "paused" }}>
-        {activeSong?.attributes?.artwork?.url ? (
-          <img
-            src={activeSong.attributes.artwork.url}
-            alt={activeSong.attributes.name}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className="w-full h-full bg-background-secondary flex items-center justify-center">
-            <BsMusicNoteBeamed className="text-text-muted text-5xl" />
+      {/* Volume */}
+      <div className="w-full flex items-center gap-2 mb-5 sm:mb-7 px-1">
+        <button
+          onClick={() => setVolume(volume === 0 ? 0.5 : 0)}
+          className="w-7 h-7 flex items-center justify-center rounded-full text-text-muted hover:text-primary transition-colors flex-shrink-0"
+        >
+          {volume > 0.5 && <BsFillVolumeUpFill size={14} />}
+          {volume > 0 && volume <= 0.5 && <BsVolumeDownFill size={14} />}
+          {volume === 0 && <BsFillVolumeMuteFill size={14} />}
+        </button>
+        <div className="flex-1 relative h-5 flex items-center group cursor-pointer">
+          <div className="w-full h-1 rounded-full bg-background-tertiary overflow-hidden">
+            <div
+              className="h-full bg-primary rounded-full"
+              style={{ width: `${volumeProgress}%` }}
+            />
           </div>
-        )}
+          <input
+            type="range"
+            step="any"
+            value={volume}
+            min="0"
+            max="1"
+            onChange={(e) => setVolume(parseFloat(e.target.value))}
+            className="absolute inset-0 w-full opacity-0 cursor-pointer"
+          />
+          <div
+            className="absolute w-3 h-3 bg-primary border-2 border-border rounded-full pointer-events-none -translate-x-1/2 opacity-0 group-hover:opacity-100"
+            style={{ left: `${volumeProgress}%` }}
+          />
+        </div>
+        <span className="text-[9px] text-text-muted font-retro-mono w-7 text-right flex-shrink-0">
+          {Math.round(volume * 100)}%
+        </span>
+      </div>
+
+      {/* CD Disc */}
+      <div className="relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] mb-6 sm:mb-8">
+        {/* Outer ring */}
+        <div
+          className={`w-full h-full rounded-full border-[3px] border-border shadow-retro-lg overflow-hidden relative ${
+            isPlaying ? "animate-[spin_8s_linear_infinite]" : ""
+          }`}
+          style={{ animationPlayState: isPlaying ? "running" : "paused" }}
+        >
+          {/* Album art as disc background */}
+          {activeSong?.attributes?.artwork?.url ? (
+            <img
+              src={activeSong.attributes.artwork.url}
+              alt={activeSong.attributes.name}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-secondary flex items-center justify-center">
+              <BsMusicNoteBeamed className="text-text-muted text-5xl" />
+            </div>
+          )}
+
+          {/* Vinyl grooves overlay */}
+          <div className="absolute inset-0 rounded-full">
+            <div className="absolute inset-[15%] rounded-full border border-black/10" />
+            <div className="absolute inset-[25%] rounded-full border border-black/8" />
+            <div className="absolute inset-[35%] rounded-full border border-black/6" />
+          </div>
+
+          {/* Center hole */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-card border-[3px] border-border shadow-retro-sm flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-border" />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Song Info */}
@@ -128,7 +181,7 @@ const NowPlaying = () => {
           {activeSong?.attributes?.artistName || activeSong?.subtitle || "Unknown artist"}
         </p>
         {activeSong?.genres?.primary && (
-          <span className="retro-badge mt-2 text-[10px] bg-primary/10 text-primary border-primary/30">
+          <span className="retro-badge mt-2 inline-flex text-[10px] bg-primary/10 text-primary border-primary/30">
             {activeSong.genres.primary}
           </span>
         )}
@@ -215,39 +268,6 @@ const NowPlaying = () => {
         >
           <BsArrowRepeat size={16} />
         </button>
-      </div>
-
-      {/* Volume */}
-      <div className="w-full max-w-[280px] flex items-center gap-2 mb-6 px-2">
-        <button
-          onClick={() => setVolume(volume === 0 ? 0.5 : 0)}
-          className="w-7 h-7 flex items-center justify-center rounded-full text-text-muted hover:text-primary transition-colors"
-        >
-          {volume > 0.5 && <BsFillVolumeUpFill size={15} />}
-          {volume > 0 && volume <= 0.5 && <BsVolumeDownFill size={15} />}
-          {volume === 0 && <BsFillVolumeMuteFill size={15} />}
-        </button>
-        <div className="flex-1 relative h-5 flex items-center group cursor-pointer">
-          <div className="w-full h-1 rounded-full bg-background-tertiary overflow-hidden">
-            <div
-              className="h-full bg-primary rounded-full"
-              style={{ width: `${volumeProgress}%` }}
-            />
-          </div>
-          <input
-            type="range"
-            step="any"
-            value={volume}
-            min="0"
-            max="1"
-            onChange={(e) => setVolume(parseFloat(e.target.value))}
-            className="absolute inset-0 w-full opacity-0 cursor-pointer"
-          />
-          <div
-            className="absolute w-3 h-3 bg-primary border-2 border-border rounded-full pointer-events-none -translate-x-1/2 opacity-0 group-hover:opacity-100"
-            style={{ left: `${volumeProgress}%` }}
-          />
-        </div>
       </div>
 
       {/* Audio Element */}
