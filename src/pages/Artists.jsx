@@ -9,10 +9,17 @@ const Artists = () => {
 
   return (
     <div className="flex flex-col">
-      <h2 className="mt-4 mb-10 text-3xl font-bold text-left text-white">Top artists</h2>
+      <div className="mt-4 mb-6">
+        <h2 className="text-2xl font-bold text-text-primary">Top Artists</h2>
+        <p className="text-[11px] text-text-muted mt-0.5 font-retro-mono">
+          TRENDING ARTISTS RIGHT NOW
+        </p>
+      </div>
 
-      <div className="flex flex-wrap justify-center gap-8 sm:justify-start">
-        {artists.map((track) => <ArtistCard key={track.key} track={track} />)}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 2xl:grid-cols-4 gap-3">
+        {artists.map((track) => (
+          <ArtistCard key={track.key} track={track} />
+        ))}
       </div>
     </div>
   )

@@ -24,17 +24,11 @@ const MusicPlayer = () => {
 
   const handlePlayPause = () => {
     if (!isActive) return;
-
-    if (isPlaying) {
-      dispatch(playPause(false));
-    } else {
-      dispatch(playPause(true));
-    }
+    dispatch(playPause(!isPlaying));
   };
 
   const handleNext = () => {
     dispatch(playPause(false));
-
     if (!shuffle) {
       dispatch(nextSong((currentIndex + 1) % currentSongs.length));
     } else {
@@ -53,13 +47,14 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className=" relative px-12 md:px-8 w-full flex items-center justify-between">
+    <div className="relative px-4 md:px-6 w-full flex items-center justify-between">
       <Track
         isPlaying={isPlaying}
         isActive={isActive}
         activeSong={activeSong}
       />
-      <div className=" flex-1 flex flex-col items-center justify-center">
+
+      <div className="flex-1 flex flex-col items-center justify-center gap-0.5">
         <ControlBtns
           isPlaying={isPlaying}
           isActive={isActive}
@@ -92,6 +87,7 @@ const MusicPlayer = () => {
           onLoadedData={(event) => setPlayTime(event.target.duration || 0)}
         />
       </div>
+
       <Volumebar
         value={volume}
         min="0"

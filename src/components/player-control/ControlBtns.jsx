@@ -19,50 +19,53 @@ const ControlBtns = ({
   handleNext,
 }) => {
   return (
-    <div className=" flex items-center justify-around md:w-36 lg:w-52 2xl:w-80">
-      <BsArrowRepeat
-        size={18}
-        color={repeat ? "red" : "white"}
+    <div className="flex items-center gap-2">
+      <button
         onClick={() => setRepeat((prev) => !prev)}
-        className=" hidden sm:block cursor-pointer"
-      />
+        className={`hidden sm:flex w-7 h-7 items-center justify-center rounded-full transition-colors ${
+          repeat ? "text-primary" : "text-text-muted hover:text-text-primary"
+        }`}
+      >
+        <BsArrowRepeat size={13} />
+      </button>
+
       {currentSongs?.length && (
-        <MdSkipPrevious
-          size={30}
-          color="#FFF"
-          className=" cursor-pointer"
+        <button
           onClick={handlePrev}
-        />
+          className="w-8 h-8 flex items-center justify-center rounded-full border-2 border-border text-text-primary hover:bg-background-secondary transition-colors"
+        >
+          <MdSkipPrevious size={18} />
+        </button>
       )}
-      {isPlaying ? (
-        <BsFillPauseFill
-          size={45}
-          color="#FFF"
-          onClick={handlePlayPause}
-          className=" cursor-pointer"
-        />
-      ) : (
-        <BsFillPlayFill
-          size={45}
-          color="#FFF"
-          onClick={handlePlayPause}
-          className=" cursor-pointer"
-        />
-      )}
+
+      <button
+        onClick={handlePlayPause}
+        className="w-11 h-11 flex items-center justify-center bg-primary border-2 border-border rounded-full shadow-retro-sm hover:bg-primary-light active:shadow-none active:translate-x-px active:translate-y-px transition-all"
+      >
+        {isPlaying ? (
+          <BsFillPauseFill size={18} className="text-white" />
+        ) : (
+          <BsFillPlayFill size={18} className="text-white ml-0.5" />
+        )}
+      </button>
+
       {currentSongs?.length && (
-        <MdSkipNext
-          size={30}
-          color="#FFF"
-          className=" cursor-pointer"
+        <button
           onClick={handleNext}
-        />
+          className="w-8 h-8 flex items-center justify-center rounded-full border-2 border-border text-text-primary hover:bg-background-secondary transition-colors"
+        >
+          <MdSkipNext size={18} />
+        </button>
       )}
-      <BsShuffle
-        size={16}
-        color={shuffle ? "red" : "white"}
+
+      <button
         onClick={() => setShuffle((prev) => !prev)}
-        className=" hidden sm:block cursor-pointer"
-      />
+        className={`hidden sm:flex w-7 h-7 items-center justify-center rounded-full transition-colors ${
+          shuffle ? "text-primary" : "text-text-muted hover:text-text-primary"
+        }`}
+      >
+        <BsShuffle size={12} />
+      </button>
     </div>
   );
 };

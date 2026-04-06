@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import { HiOutlineColorSwatch } from 'react-icons/hi';
-import { RiCloseLine } from 'react-icons/ri';
+import { BsCheck2 } from 'react-icons/bs';
 
 const ThemeSwitcher = () => {
   const { currentTheme, themeNames, changeTheme } = useTheme();
@@ -11,50 +11,36 @@ const ThemeSwitcher = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-secondary/50 hover:bg-secondary transition-colors text-text-primary"
+        className="w-9 h-9 flex items-center justify-center bg-surface border-2 border-border rounded-[10px] shadow-retro-sm hover:shadow-retro transition-all duration-150 text-text-primary"
         aria-label="Change theme"
       >
-        <HiOutlineColorSwatch className="w-5 h-5" />
+        <HiOutlineColorSwatch className="w-4 h-4" />
       </button>
 
       {isOpen && (
         <>
-          <div
-            className="fixed inset-0 z-40"
-            onClick={() => setIsOpen(false)}
-          />
-          <div className="absolute right-0 mt-2 w-48 bg-secondary/95 backdrop-blur-lg rounded-lg shadow-xl z-50 border border-background-tertiary">
-            <div className="p-3 border-b border-background-tertiary flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-text-primary">Themes</h3>
+          <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
+          <div className="absolute right-0 mt-1.5 w-44 bg-card border-2 border-border rounded-retro-sm shadow-retro z-50 py-1">
+            <div className="px-3 py-2 border-b border-border/20">
+              <h3 className="text-xs font-bold text-text-primary">Themes</h3>
+            </div>
+            {themeNames.map((theme) => (
               <button
-                onClick={() => setIsOpen(false)}
-                className="text-text-secondary hover:text-text-primary transition-colors"
-                aria-label="Close"
+                key={theme.key}
+                onClick={() => {
+                  changeTheme(theme.key);
+                  setIsOpen(false);
+                }}
+                className={`w-full text-left px-3 py-2 text-sm transition-colors duration-100 flex items-center justify-between ${
+                  currentTheme === theme.key
+                    ? 'bg-primary text-white font-semibold'
+                    : 'text-text-secondary hover:bg-primary/8'
+                }`}
               >
-                <RiCloseLine className="w-5 h-5" />
+                {theme.name}
+                {currentTheme === theme.key && <BsCheck2 className="w-3.5 h-3.5" />}
               </button>
-            </div>
-            <div className="p-2">
-              {themeNames.map((theme) => (
-                <button
-                  key={theme.key}
-                  onClick={() => {
-                    changeTheme(theme.key);
-                    setIsOpen(false);
-                  }}
-                  className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors mb-1 ${
-                    currentTheme === theme.key
-                      ? 'bg-accent/20 text-accent font-semibold'
-                      : 'text-text-secondary hover:bg-background-tertiary hover:text-text-primary'
-                  }`}
-                >
-                  {theme.name}
-                  {currentTheme === theme.key && (
-                    <span className="ml-2 text-accent">✓</span>
-                  )}
-                </button>
-              ))}
-            </div>
+            ))}
           </div>
         </>
       )}
@@ -63,5 +49,3 @@ const ThemeSwitcher = () => {
 };
 
 export default ThemeSwitcher;
-
-

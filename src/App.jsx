@@ -16,12 +16,12 @@ import Search from './pages/Search'
 const App = () => {
   const { activeSong } = useSelector((state) => state.player)
   return (
-    <div className='relative flex '>
+    <div className="relative flex min-h-screen bg-background">
       <Sidebar />
-      <div className=' flex-1 flex flex-col bg-background overflow-hidden'>
+      <div className="flex-1 flex flex-col overflow-hidden">
         <Searchbar />
-        <div className="px-6 flex xl:flex-row flex-col-reverse h-[calc(100vh-72px)] overflow-y-auto hide-scrollbar">
-          <div className="flex-1 pb-40 min-h-0">
+        <div className="px-4 md:px-6 pt-4 flex xl:flex-row flex-col-reverse h-[calc(100vh-56px)] overflow-y-auto hide-scrollbar">
+          <div className="flex-1 pb-36 min-h-0">
             <Routes>
               <Route path='/' element={<Discover />} />
               <Route path='/artists/:id' element={<ArtistDetail />} />
@@ -32,13 +32,13 @@ const App = () => {
               <Route path='/search/:searchTerm' element={<Search />} />
             </Routes>
           </div>
-          <div className="relative top-0 xl:sticky self-start xl:max-h-[calc(100vh-72px)] xl:overflow-y-auto">
+          <div className="relative top-0 xl:sticky self-start xl:max-h-[calc(100vh-56px)] xl:overflow-y-auto hide-scrollbar">
             <TopPlay />
           </div>
         </div>
       </div>
       {activeSong?.attributes?.name && (
-        <div className=' fixed h-24 bottom-0 left-0 right-0 flex bg-gradient-to-br from-white/10 to-background backdrop-blur-lg rounded-t-3xl z-10'>
+        <div className="fixed h-20 bottom-0 left-0 right-0 flex bg-card border-t-2 border-border z-10 shadow-[0_-4px_16px_rgba(0,0,0,0.05)]">
           <MusicPlayer />
         </div>
       )}

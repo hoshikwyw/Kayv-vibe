@@ -5,9 +5,9 @@ const DetailsTitle = ({ artistId, artistData, songData }) => {
   const artistPath = artistData?.attributes;
 
   return (
-    <div className=" relative w-full flex flex-col">
-      <div className=" w-full bg-gradient-to-l from-transparent to-secondary/90 h-48 md:h-28">
-        <div className=" absolute inset-0 flex items-center">
+    <div className="w-full mb-5">
+      <div className="retro-card p-4 flex flex-col sm:flex-row items-center gap-4">
+        <div className="w-28 h-28 rounded-retro border-2 border-border overflow-hidden flex-shrink-0">
           <img
             src={
               artistId
@@ -17,28 +17,30 @@ const DetailsTitle = ({ artistId, artistData, songData }) => {
                 : songData?.images?.coverart
             }
             alt=""
-            className=" w-48 md:w-24 h-48 md:h-24 rounded-full object-cover border-2 shadow-md shadow-white"
+            className="w-full h-full object-cover"
           />
-          <div className=" ml-5">
-            <p className=" font-bold text-3xl md:text-xl text-white">
-              {artistId ? artistPath?.name : songData?.title}
-            </p>
-            {!artistId && (
-              <Link to={`/artists/${songData?.artists[0].adamid}`}>
-                <p className=" text-base text-gray-300 mt-1">
-                  {songData?.subtitle}
-                </p>
-              </Link>
-            )}
-            <p className=" text-base text-gray-300 mt-1">
+        </div>
+        <div className="text-center sm:text-left">
+          <h1 className="font-bold text-xl text-text-primary">
+            {artistId ? artistPath?.name : songData?.title}
+          </h1>
+          {!artistId && (
+            <Link
+              to={`/artists/${songData?.artists[0].adamid}`}
+              className="text-sm text-primary hover:text-primary-dark transition-colors font-semibold"
+            >
+              {songData?.subtitle}
+            </Link>
+          )}
+          <div className="mt-1.5">
+            <span className="retro-badge bg-primary/10 text-primary border-primary/30">
               {artistData
                 ? artistPath?.genreNames[0]
                 : songData?.genres?.primary}
-            </p>
+            </span>
           </div>
         </div>
       </div>
-      <div className=" w-full h-44 md:h-24" />
     </div>
   );
 };

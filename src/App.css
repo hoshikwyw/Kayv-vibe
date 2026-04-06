@@ -1,3 +1,9 @@
 .main-text {
-    filter: drop-shadow(2px 2px 2px var(--color-primary-light));
+    filter: drop-shadow(1px 1px 0px var(--color-primary-light));
+}
+
+/* Active nav link */
+.active-nav-link {
+    background-color: var(--color-primary);
+    color: white;
 }

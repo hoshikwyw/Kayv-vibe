@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,21 +8,132 @@
   * {
     @apply transition-colors duration-200;
   }
-  
+
   body {
-    @apply bg-background text-text-primary;
+    @apply bg-background text-text-primary font-retro;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
+@layer components {
+  /* Retro Card */
+  .retro-card {
+    @apply bg-card border-2 border-border rounded-retro;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .retro-card-interactive {
+    @apply retro-card shadow-retro-sm;
+  }
+  .retro-card-interactive:hover {
+    transform: translate(-1px, -1px);
+    @apply shadow-retro;
+  }
+  .retro-card-interactive:active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+  }
+
+  /* Retro Button */
+  .retro-btn {
+    @apply bg-primary text-white font-semibold px-4 py-2 border-2 border-border rounded-retro-sm shadow-retro-sm cursor-pointer text-sm;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .retro-btn:hover {
+    transform: translate(-1px, -1px);
+    @apply shadow-retro bg-primary-light;
+  }
+  .retro-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+  }
+  .retro-btn:disabled {
+    @apply opacity-40 cursor-not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Retro Button Outline */
+  .retro-btn-outline {
+    @apply bg-card text-text-primary font-semibold px-4 py-2 border-2 border-border rounded-retro-sm shadow-retro-sm cursor-pointer text-sm;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .retro-btn-outline:hover {
+    transform: translate(-1px, -1px);
+    @apply shadow-retro bg-card-hover;
+  }
+  .retro-btn-outline:active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+  }
+
+  /* Retro Input */
+  .retro-input {
+    @apply bg-surface border-2 border-border rounded-retro-sm px-4 py-2 text-text-primary placeholder-text-muted font-retro outline-none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .retro-input:focus-within {
+    @apply border-border-accent;
+    box-shadow: 0 0 0 2px rgba(232, 135, 30, 0.12);
+  }
+
+  /* Retro Badge */
+  .retro-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 text-xs font-semibold border border-border rounded-full text-text-secondary;
+  }
+
+  /* Retro Divider */
+  .retro-divider {
+    @apply w-full border-t-2;
+    border-color: color-mix(in srgb, var(--color-border) 30%, transparent);
+  }
+
+  /* Retro Section Title */
+  .retro-title {
+    @apply text-2xl font-bold text-text-primary tracking-tight;
+  }
+
+  /* Retro Scrollbar */
+  .retro-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .retro-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .retro-scrollbar::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--color-border) 30%, transparent);
+    @apply rounded-full;
+  }
+  .retro-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in srgb, var(--color-border) 50%, transparent);
+  }
+
+  /* Retro Range/Slider */
+  .retro-range {
+    @apply appearance-none h-1.5 rounded-full bg-background-tertiary outline-none cursor-pointer;
+  }
+  .retro-range::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 rounded-full bg-primary border-2 border-border cursor-pointer;
+    margin-top: -1px;
+  }
+  .retro-range::-moz-range-thumb {
+    @apply w-4 h-4 rounded-full bg-primary border-2 border-border cursor-pointer;
+  }
+  .retro-range::-webkit-slider-runnable-track {
+    @apply h-1.5 rounded-full;
+  }
+}
+
+/* Hide scrollbar utility */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
-
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
+/* Smooth transition utility */
 .smooth-transition {
   transition: all 0.3s ease-in-out;
 }

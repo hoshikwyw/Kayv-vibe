@@ -11,32 +11,44 @@ const TopPlayCard = ({
   handlePlayBtn,
 }) => {
   return (
-    <div className=" w-full flex flex-row items-center hover:bg-white/30 bg-opacity-80 py-2 p-4 rounded-lg cursor-pointer mb-2">
-      <h3 className=" font-bold text-lg text-white mr-2">{i + 1}.</h3>
-      <div className=" flex-1 flex flex-row justify-between items-center">
+    <div
+      className={`w-full flex items-center gap-2.5 py-2 px-2 rounded-[10px] cursor-pointer transition-all duration-150 ${
+        activeSong?.title === song?.title
+          ? "bg-primary/8"
+          : "hover:bg-background-secondary"
+      }`}
+    >
+      <span className="text-[11px] font-bold text-text-muted font-retro-mono w-5 text-center flex-shrink-0">
+        {String(i + 1).padStart(2, "0")}
+      </span>
+      <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
         <img
-          className=" w-16 h-16 rounded-lg"
+          className="w-full h-full object-cover"
           src={song?.images?.coverart}
           alt={song?.title}
         />
-        <div className=" flex-1 flex flex-col justify-center mx-2">
-          <Link to={`/songs/${song.key}`}>
-            <p className=" text-lg font-semibold text-white">{song?.title}</p>
-          </Link>
-          <Link to={`/artists/${song?.artists[0].adamid}`}>
-            <p className=" text-sm font-semibold text-text-muted mt-1">
-              {song?.subtitle}
-            </p>
-          </Link>
-        </div>
       </div>
-      <PlayPause
-        isPlaying={isPlaying}
-        activeSong={activeSong}
-        song={song}
-        handlePause={handlePauseBtn}
-        handlePlay={handlePlayBtn}
-      />
+      <div className="flex-1 min-w-0">
+        <Link to={`/songs/${song.key}`}>
+          <p className="text-[13px] font-semibold text-text-primary truncate hover:text-primary transition-colors">
+            {song?.title}
+          </p>
+        </Link>
+        <Link to={`/artists/${song?.artists[0].adamid}`}>
+          <p className="text-[11px] text-text-muted truncate hover:text-primary transition-colors">
+            {song?.subtitle}
+          </p>
+        </Link>
+      </div>
+      <div className="flex-shrink-0 scale-[0.65]">
+        <PlayPause
+          isPlaying={isPlaying}
+          activeSong={activeSong}
+          song={song}
+          handlePause={handlePauseBtn}
+          handlePlay={handlePlayBtn}
+        />
+      </div>
     </div>
   );
 };

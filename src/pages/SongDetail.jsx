@@ -23,8 +23,6 @@ const SongDetail = () => {
     error: errorInRelate,
   } = useGetRelateSongQuery({ songid });
 
-  // console.log(data);
-
   const {
     data: songData,
     isLoading: isLoadingSongD,
@@ -41,36 +39,35 @@ const SongDetail = () => {
     dispatch(playPause(true));
   };
 
-  // console.log(songData);
-  if (isFetchingSongD || isFetchingRelateSong) {
-    return <Loader />;
-  }
-
-  if (isLoadingSongD || isLoadingRelate) {
-    return <Loader />;
-  }
-
-  if (errorInRelate || errorInSongD) {
-    return <Error />;
-  }
+  if (isFetchingSongD || isFetchingRelateSong) return <Loader />;
+  if (isLoadingSongD || isLoadingRelate) return <Loader />;
+  if (errorInRelate || errorInSongD) return <Error />;
 
   return (
-    <div className=" flex flex-col">
+    <div className="flex flex-col mt-4">
       <DetailsTitle artistId="" songData={songData} />
-      <div className=" mb-10">
-        <h2 className=" text-white text-xl font-bold">Lyrics:</h2>
-        <div className=" mt-5">
-          {songData?.sections[1].type === "LYRICS" ? (
-            songData?.sections[1].text.map((line, i) => (
-              <p className=" text-white text-base my-1">{line}</p>
-            ))
-          ) : (
-            <p className=" text-white text-base my-1">
-              Sorry , there's no lyrics available!
-            </p>
-          )}
-        </div>
+
+      <div className="retro-card p-4 mb-5">
+        <h2 className="text-lg font-bold text-text-primary flex items-center gap-1.5 mb-3">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+          Lyrics
+        </h2>
+        <div className="retro-divider mb-3" />
+        {songData?.sections[1].type === "LYRICS" ? (
+          <div className="space-y-0.5">
+            {songData?.sections[1].text.map((line, i) => (
+              <p key={i} className="text-sm text-text-secondary leading-relaxed">
+                {line}
+              </p>
+            ))}
+          </div>
+        ) : (
+          <p className="text-sm text-text-muted italic">
+            No lyrics available for this song.
+          </p>
+        )}
       </div>
+
       <RelateSong
         data={data}
         isPlaying={isPlaying}

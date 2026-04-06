@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const SongCard = ({ song, i, isPlaying, activeSong, data }) => {
-  // const activeSong = 'hello';
   const dispatch = useDispatch();
-  // console.log(">>", activeSong);
 
   const handlePauseBtn = () => {
     dispatch(playPause(false));
@@ -19,37 +17,49 @@ const SongCard = ({ song, i, isPlaying, activeSong, data }) => {
   };
 
   return (
-    <div className=" flex flex-col w-[calc(50%-1rem)] sm:w-[180px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer shadow-md">
-      <div className="relative w-full h-40 group">
-        <div
-          className={` absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${activeSong?.title === song.attributes.name
-            ? "flex bg-black bg-opacity-70"
-            : "hidden"
-            }`}>
-          <PlayPause
-            song={song}
-            isPlaying={isPlaying}
-            activeSong={activeSong}
-            handlePause={handlePauseBtn}
-            handlePlay={handlePlayBtn}
+    <div className="w-[calc(50%-8px)] sm:w-[170px] animate-slideup">
+      <div className="retro-card-interactive p-2.5 cursor-pointer group">
+        <div className="relative w-full aspect-square overflow-hidden rounded-[10px]">
+          <img
+            src={song.attributes?.artwork?.url}
+            alt={song.attributes?.name}
+            className="w-full h-full object-cover"
           />
+          <div
+            className={`absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-200 ${
+              activeSong?.title === song.attributes.name
+                ? "opacity-100"
+                : "opacity-0 group-hover:opacity-100"
+            }`}
+          >
+            <PlayPause
+              song={song}
+              isPlaying={isPlaying}
+              activeSong={activeSong}
+              handlePause={handlePauseBtn}
+              handlePlay={handlePlayBtn}
+            />
+          </div>
         </div>
-        <img src={song.attributes?.artwork?.url} alt="song_image" className="h-40 " />
-      </div>
-      <div className="flex flex-col mt-4 ">
-        <p className="text-sm font-semibold text-white truncate ">
-          <Link to={`/songs/${song?.key}`}>{song.attributes.name}</Link>
-        </p>
-        <p className="mt-1 text-sm text-gray-300 truncate ">
-          <Link
-            to={
-              song.artists
-                ? `/artists/${song?.artists[0]?.adamid}`
-                : "/top-artists"
-            }>
-            {song.subtitle}
-          </Link>
-        </p>
+        <div className="mt-2 px-0.5">
+          <p className="text-[13px] font-bold text-text-primary truncate">
+            <Link to={`/songs/${song?.key}`} className="hover:text-primary transition-colors">
+              {song.attributes.name}
+            </Link>
+          </p>
+          <p className="mt-0.5 text-[11px] text-text-muted truncate">
+            <Link
+              to={
+                song.artists
+                  ? `/artists/${song?.artists[0]?.adamid}`
+                  : "/top-artists"
+              }
+              className="hover:text-primary transition-colors"
+            >
+              {song.subtitle}
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

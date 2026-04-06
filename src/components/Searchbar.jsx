@@ -9,33 +9,29 @@ const Searchbar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    navigate(`/search/${searchTerm}`);
+    if (searchTerm.trim()) {
+      navigate(`/search/${searchTerm}`);
+    }
   };
 
   return (
-    <div className="flex flex-row items-center justify-between p-2 py-2">
-      <form onSubmit={handleSubmit} autoComplete="off" className="flex-1 text-text-muted focus-within:text-text-primary">
-        <label htmlFor="search-field" className="sr-only">
-          Search all files
-        </label>
-        <div className="flex flex-row justify-start items-center">
-          <FiSearch aria-hidden="true" className="w-5 h-5 ml-4" />
+    <div className="flex items-center gap-3 px-4 md:px-6 py-2.5 bg-card border-b-2 border-border">
+      <form onSubmit={handleSubmit} autoComplete="off" className="flex-1">
+        <div className="flex items-center gap-2.5 retro-input !py-1.5 !px-3">
+          <FiSearch className="w-4 h-4 text-text-muted flex-shrink-0" />
           <input
             name="search-field"
             autoComplete="off"
             id="search-field"
-            className="flex-1 bg-transparent border-none placeholder-text-muted outline-none text-base text-text-secondary p-4 shadow-md"
-            placeholder="Search"
+            className="flex-1 bg-transparent border-none outline-none text-sm text-text-primary placeholder-text-muted font-retro"
+            placeholder="Search songs, artists..."
             type="search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
       </form>
-      <div className="mr-4">
-        <ThemeSwitcher />
-      </div>
+      <ThemeSwitcher />
     </div>
   );
 };

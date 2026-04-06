@@ -10,11 +10,12 @@ const RelateSong = ({
   artistId,
 }) => {
   return (
-    <div className=" flex flex-col">
-      <h1 className=" font-bold text-xl text-text-primary main-text">
-        Related Songs:{" "}
-      </h1>
-      <div className=" mt-6 w-full flex flex-col">
+    <div className="flex flex-col">
+      <h2 className="text-lg font-bold text-text-primary flex items-center gap-1.5 mb-3">
+        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+        Related Songs
+      </h2>
+      <div className="retro-card p-2.5">
         {data?.map((song, i) => (
           <SongBar
             key={`${song?.key}-${artistId}`}

@@ -2,18 +2,28 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const ArtistCard = ({ track }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div
-      className="flex flex-col w-[calc(50%-1rem)] sm:w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
+      className="w-[calc(50%-8px)] sm:w-[170px] animate-slideup cursor-pointer"
       onClick={() => navigate(`/artists/${track?.artists[0].adamid}`)}
     >
-      <img alt="song_img" src={track?.images?.background} className="w-full h-56 rounded-lg" />
-      <p className="mt-4 font-semibold text-lg text-white truncate">
-        {track?.subtitle}
-      </p>
-      
+      <div className="retro-card-interactive p-2.5">
+        <div className="w-full aspect-square overflow-hidden rounded-[10px]">
+          <img
+            alt={track?.subtitle}
+            src={track?.images?.background}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="mt-2 px-0.5">
+          <p className="text-[13px] font-bold text-text-primary truncate">
+            {track?.subtitle}
+          </p>
+          <p className="text-[10px] text-text-muted font-retro-mono mt-0.5">ARTIST</p>
+        </div>
+      </div>
     </div>
   )
 }

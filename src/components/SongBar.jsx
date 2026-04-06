@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import PlayPause from "./PlayPause";
+
 const SongBar = ({
   song,
   i,
@@ -12,13 +12,18 @@ const SongBar = ({
   handlePlayBtn,
 }) => (
   <div
-    className={`w-full flex flex-row items-center hover:bg-card-hover ${
-      activeSong?.title === song?.title ? "bg-card" : "bg-transparent"
-    } py-2 p-4 rounded-lg cursor-pointer mb-2`}>
-    <h3 className="font-bold text-base text-white mr-3">{i + 1}.</h3>
-    <div className="flex-1 flex flex-row justify-between items-center">
+    className={`w-full flex items-center gap-3 p-2.5 rounded-[10px] cursor-pointer transition-all duration-150 mb-0.5 ${
+      activeSong?.title === song?.title
+        ? "bg-primary/8"
+        : "hover:bg-background-secondary"
+    }`}
+  >
+    <span className="text-[11px] font-bold text-text-muted font-retro-mono w-5 text-center flex-shrink-0">
+      {String(i + 1).padStart(2, "0")}
+    </span>
+    <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
       <img
-        className="w-20 h-20 rounded-lg"
+        className="w-full h-full object-cover"
         src={
           artistId
             ? song?.attributes?.artwork?.url
@@ -28,31 +33,34 @@ const SongBar = ({
         }
         alt={song?.title}
       />
-      
-      <div className="flex-1 flex flex-col justify-center mx-3">
-        {!artistId ? (
-          <Link to={`/songs/${song.key}`}>
-            <p className="text-xl font-bold text-white">{song?.title}</p>
-          </Link>
-        ) : (
-          <p className="text-xl font-bold text-white">
-            {song?.attributes?.name}
-          </p>
-        )}
-        <p className="text-base text-gray-300 mt-1">
-          {artistId ? song?.attributes?.albumName : song?.subtitle}
-        </p>
-      </div>
     </div>
-    {!artistId ? (
-      <PlayPause
-        isPlaying={isPlaying}
-        activeSong={activeSong}
-        song={song}
-        handlePause={handlePauseBtn}
-        handlePlay={() => handlePlayBtn(song, i)}
-      />
-    ) : null}
+    <div className="flex-1 min-w-0">
+      {!artistId ? (
+        <Link to={`/songs/${song.key}`}>
+          <p className="text-sm font-semibold text-text-primary truncate hover:text-primary transition-colors">
+            {song?.title}
+          </p>
+        </Link>
+      ) : (
+        <p className="text-sm font-semibold text-text-primary truncate">
+          {song?.attributes?.name}
+        </p>
+      )}
+      <p className="text-xs text-text-muted mt-0.5 truncate">
+        {artistId ? song?.attributes?.albumName : song?.subtitle}
+      </p>
+    </div>
+    {!artistId && (
+      <div className="flex-shrink-0 scale-[0.7]">
+        <PlayPause
+          isPlaying={isPlaying}
+          activeSong={activeSong}
+          song={song}
+          handlePause={handlePauseBtn}
+          handlePlay={() => handlePlayBtn(song, i)}
+        />
+      </div>
+    )}
   </div>
 );
 

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { genres } from "../assets/constants";
 import SongCard from "../components/SongCard";
+import RetroDropdown from "../components/RetroDropdown";
 import { useGetChartTracksQuery, useGetCitiesQuery } from "../redux/services/dataFetch";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import { useSelector } from "react-redux";
-import { skipToken } from "@reduxjs/toolkit/query"; // ✅ import skipToken
+import { skipToken } from "@reduxjs/toolkit/query";
 
 const Discover = () => {
   const [genre, setGenre] = useState("POP");
@@ -25,50 +26,46 @@ const Discover = () => {
   const paginatedData = data?.slice(start, end);
 
   return (
-    <div className="flex flex-col ">
-      <div className="flex flex-col items-center justify-between w-full mt-4 mb-10 md:flex-row">
-        <h2 className="font-bold text-3xl text-text-primary main-text">Discover</h2>
-        <select
+    <div className="flex flex-col">
+      {/* Header */}
+      <div className="flex items-center justify-between gap-4 mt-4 mb-6">
+        <div>
+          <h2 className="text-2xl font-bold text-text-primary">Discover</h2>
+          <p className="text-[11px] text-text-muted mt-0.5 font-retro-mono">
+            FIND YOUR NEXT FAVORITE TRACK
+          </p>
+        </div>
+        <RetroDropdown
+          options={genres}
           value={genre}
-          onChange={(e) => {
-            setGenre(e.target.value);
+          onChange={(val) => {
+            setGenre(val);
             setPage(1);
           }}
-          className="px-2 py-1 mt-0 text-sm text-gray-500 rounded-lg outline-none bg-opacity-60 backdrop-blur-lg md:mt-5"
-        >
-          {genres.map((g) => (
-            <option
-              key={g.value}
-              value={g.value}
-              className="bg-text-primary main-text"
-            >
-              {g.title}
-            </option>
-          ))}
-        </select>
+          placeholder="Select Genre"
+        />
       </div>
 
-      {/* ✅ Proper loading & error handling */}
       {isFetching || isLoading ? (
         <Loader />
       ) : error ? (
-        // ✅ Custom 429 error handling
         error?.status === 429 ? (
-          <p className="font-semibold text-center text-black ">
-            Too many requests — take some rest ☕
-          </p>
+          <div className="retro-card p-5 text-center">
+            <p className="font-bold text-text-primary text-sm">
+              Too many requests — take some rest
+            </p>
+            <p className="text-xs text-text-muted mt-1">Try again in a moment</p>
+          </div>
         ) : (
           <Error />
         )
       ) : (
         <>
-          {/* ✅ Show total count */}
-          <p className="mb-4 text-sm text-gray-300">
-            Showing {Math.min(end, total)} of {total} songs
-          </p>
+          <div className="retro-badge mb-4">
+            {Math.min(end, total)} of {total} songs
+          </div>
 
-          {/* ✅ Songs grid */}
-          <div className="flex flex-wrap justify-center gap-8 ">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 2xl:grid-cols-4 gap-3">
             {paginatedData?.map((song, i) => (
               <SongCard
                 key={i}
@@ -81,19 +78,22 @@ const Discover = () => {
             ))}
           </div>
 
-          {/* ✅ Pagination controls */}
-          <div className="flex justify-center gap-4 mt-6">
+          {/* Pagination */}
+          <div className="flex items-center justify-center gap-3 mt-6 mb-4">
             <button
               disabled={page === 1}
               onClick={() => setPage((p) => p - 1)}
-              className="px-4 py-2 text-sm font-medium text-text-secondary bg-accent rounded-lg disabled:opacity-50 hover:bg-accent-hover transition-colors"
+              className="retro-btn"
             >
               Previous
             </button>
+            <span className="retro-badge bg-primary text-white border-primary">
+              {page} / {Math.ceil(total / pageSize)}
+            </span>
             <button
               disabled={end >= total}
               onClick={() => setPage((p) => p + 1)}
-              className="px-4 py-2 text-sm font-medium text-text-secondary bg-accent rounded-lg disabled:opacity-50 hover:bg-accent-hover transition-colors"
+              className="retro-btn"
             >
               Next
             </button>

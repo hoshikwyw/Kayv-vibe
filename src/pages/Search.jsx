@@ -5,7 +5,7 @@ import { useSearchSongQuery } from '../redux/services/dataFetch';
 import Loader from '../components/Loader';
 import Error from '../components/Error';
 import SongCard from '../components/SongCard';
-
+import { FiSearch } from 'react-icons/fi';
 
 const Search = () => {
   const { searchTerm } = useParams();
@@ -15,18 +15,22 @@ const Search = () => {
   const songs = data?.tracks?.hits.map((song) => song.track);
 
   if (isFetching) return <Loader />;
-
   if (isLoading) return <Loader />;
-
   if (error) return <Error />;
-
-  // console.log(data);
 
   return (
     <div className="flex flex-col">
-      <h2 className="font-bold text-3xl text-white text-left mt-4 mb-10">Showing results for <span className="font-black">{searchTerm}</span></h2>
+      <div className="mt-4 mb-6">
+        <h2 className="text-2xl font-bold text-text-primary flex items-center gap-2">
+          <FiSearch className="text-primary w-5 h-5" />
+          Search Results
+        </h2>
+        <p className="text-[11px] text-text-muted mt-0.5">
+          Showing results for <span className="font-bold text-primary">"{searchTerm}"</span>
+        </p>
+      </div>
 
-      <div className="flex flex-wrap sm:justify-start justify-center gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 2xl:grid-cols-4 gap-3">
         {songs.map((song, i) => (
           <SongCard
             key={song.key}
