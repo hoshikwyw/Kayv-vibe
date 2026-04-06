@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 import ThemeSwitcher from './ThemeSwitcher';
+import { HiOutlineMenu } from 'react-icons/hi';
+import { useSidebar } from './Sidebar';
 
 const Searchbar = () => {
   const navigate = useNavigate();
@@ -32,9 +34,20 @@ const Searchbar = () => {
         </div>
       </form>
       <ThemeSwitcher />
-      {/* Spacer for mobile hamburger button */}
-      <div className="w-8 md:hidden flex-shrink-0" />
+      <MobileMenuBtn />
     </div>
+  );
+};
+
+const MobileMenuBtn = () => {
+  const { toggle } = useSidebar();
+  return (
+    <button
+      onClick={toggle}
+      className="md:hidden w-8 h-8 flex items-center justify-center bg-surface border-2 border-border rounded-[10px] shadow-retro-sm flex-shrink-0"
+    >
+      <HiOutlineMenu className="text-text-primary text-base" />
+    </button>
   );
 };
 

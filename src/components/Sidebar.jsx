@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, createContext, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { links } from "../assets/constants";
 import { RiCloseLine } from "react-icons/ri";
-import { HiOutlineMenu } from "react-icons/hi";
 import { BsMusicNoteBeamed } from "react-icons/bs";
+
+const SidebarContext = createContext();
+
+export const useSidebar = () => useContext(SidebarContext);
+
+export const SidebarProvider = ({ children }) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  return (
+    <SidebarContext.Provider value={{ mobileOpen, setMobileOpen, toggle: () => setMobileOpen(v => !v) }}>
+      {children}
+    </SidebarContext.Provider>
+  );
+};
 
 const NavLinks = ({ handleClick }) => (
   <div className="mt-5 flex flex-col gap-0.5">
@@ -41,26 +53,13 @@ const Logo = () => (
   </div>
 );
 
-export const MobileMenuButton = ({ onClick, isOpen }) => (
-  <button
-    onClick={onClick}
-    className="md:hidden w-8 h-8 flex items-center justify-center bg-surface border-2 border-border rounded-[10px] shadow-retro-sm flex-shrink-0"
-  >
-    {isOpen ? (
-      <RiCloseLine className="text-text-primary text-base" />
-    ) : (
-      <HiOutlineMenu className="text-text-primary text-base" />
-    )}
-  </button>
-);
-
 const Sidebar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const { mobileOpen, setMobileOpen } = useSidebar();
 
   return (
     <>
       {/* Desktop */}
-      <div className="md:flex hidden flex-col w-[210px] min-h-screen bg-card border-r-2 border-border flex-shrink-0">
+      <div className="md:flex hidden flex-col w-[210px] h-screen bg-card border-r-2 border-border flex-shrink-0 fixed top-0 left-0 z-20">
         <Link to="/" className="block px-4 pt-5 pb-1">
           <Logo />
         </Link>
@@ -70,11 +69,6 @@ const Sidebar = () => {
         <div className="px-4 py-3 border-t border-border/20">
           <p className="text-[9px] text-text-muted font-retro-mono text-center tracking-wider">v1.0.0</p>
         </div>
-      </div>
-
-      {/* Mobile Menu Button - rendered inside Searchbar via export */}
-      <div className="fixed md:hidden top-2 right-3 z-30">
-        <MobileMenuButton onClick={() => setMobileOpen(!mobileOpen)} isOpen={mobileOpen} />
       </div>
 
       {/* Mobile Overlay */}
@@ -91,9 +85,17 @@ const Sidebar = () => {
           mobileOpen ? "left-0" : "-left-full"
         }`}
       >
-        <Link to="/" onClick={() => setMobileOpen(false)}>
-          <Logo />
-        </Link>
+        <div className="flex items-center justify-between mb-2">
+          <Link to="/" onClick={() => setMobileOpen(false)}>
+            <Logo />
+          </Link>
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="w-8 h-8 flex items-center justify-center rounded-[10px] hover:bg-background-secondary transition-colors"
+          >
+            <RiCloseLine className="text-text-primary text-lg" />
+          </button>
+        </div>
         <NavLinks handleClick={() => setMobileOpen(false)} />
       </div>
     </>

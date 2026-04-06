@@ -65,7 +65,7 @@ const Discover = () => {
             {Math.min(end, total)} of {total} songs
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
             {paginatedData?.map((song, i) => (
               <SongCard
                 key={i}

@@ -20,9 +20,13 @@ const App = () => {
   return (
     <div className="relative flex min-h-screen bg-background">
       <Sidebar />
-      <div className="flex-1 flex flex-col overflow-hidden min-w-0">
-        <Searchbar />
-        <div className="flex-1 flex lg:flex-row flex-col overflow-y-auto hide-scrollbar">
+      <div className="flex-1 flex flex-col min-w-0 min-h-screen md:ml-[210px]">
+        {/* Fixed searchbar */}
+        <div className="fixed top-0 right-0 left-0 md:left-[210px] z-20">
+          <Searchbar />
+        </div>
+        {/* Content below fixed searchbar */}
+        <div className="flex-1 flex lg:flex-row flex-col overflow-y-auto hide-scrollbar mt-[44px] sm:mt-[48px]">
           <div className={`flex-1 min-w-0 px-3 sm:px-4 md:px-5 pt-3 sm:pt-4 ${hasPlayer ? 'pb-24 sm:pb-28' : 'pb-6'}`}>
             <Routes>
               <Route path='/' element={<Discover />} />
@@ -34,7 +38,7 @@ const App = () => {
               <Route path='/search/:searchTerm' element={<Search />} />
             </Routes>
           </div>
-          <div className="hidden md:block lg:sticky lg:top-0 self-start lg:max-h-screen lg:overflow-y-auto hide-scrollbar flex-shrink-0 px-3 sm:px-4 md:px-5 lg:pl-0 lg:pr-4 lg:pt-4 pb-6">
+          <div className="hidden lg:block lg:sticky lg:top-0 self-start lg:max-h-[calc(100vh-48px)] lg:overflow-y-auto hide-scrollbar flex-shrink-0 lg:pr-4 lg:pt-4">
             <TopPlay />
           </div>
         </div>
