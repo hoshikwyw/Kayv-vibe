@@ -10,17 +10,17 @@ const Liked = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="mt-4 mb-6">
-        <h2 className="text-2xl font-bold text-text-primary flex items-center gap-2">
+      <div className="mt-2 sm:mt-4 mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-text-primary flex items-center gap-2">
           Liked Songs
-          <BsHeartFill className="text-danger text-base" />
+          <BsHeartFill className="text-danger text-sm sm:text-base" />
         </h2>
-        <p className="text-[11px] text-text-muted mt-0.5 font-retro-mono">
+        <p className="text-[10px] sm:text-[11px] text-text-muted mt-0.5 font-retro-mono hidden sm:block">
           YOUR FAVORITE COLLECTION
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 2xl:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
         {likedSongs.map((song, i) => (
           <SongCard
             key={`${song.key}-${i}`}

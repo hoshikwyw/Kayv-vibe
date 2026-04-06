@@ -17,9 +17,9 @@ const SongCard = ({ song, i, isPlaying, activeSong, data }) => {
   };
 
   return (
-    <div className="w-[calc(50%-8px)] sm:w-[170px] animate-slideup">
-      <div className="retro-card-interactive p-2.5 cursor-pointer group">
-        <div className="relative w-full aspect-square overflow-hidden rounded-[10px]">
+    <div className="animate-slideup">
+      <div className="retro-card-interactive p-2 sm:p-2.5 cursor-pointer group">
+        <div className="relative w-full aspect-square overflow-hidden rounded-lg sm:rounded-[10px]">
           <img
             src={song.attributes?.artwork?.url}
             alt={song.attributes?.name}
@@ -41,13 +41,13 @@ const SongCard = ({ song, i, isPlaying, activeSong, data }) => {
             />
           </div>
         </div>
-        <div className="mt-2 px-0.5">
-          <p className="text-[13px] font-bold text-text-primary truncate">
+        <div className="mt-1.5 sm:mt-2 px-0.5">
+          <p className="text-[12px] sm:text-[13px] font-bold text-text-primary truncate">
             <Link to={`/songs/${song?.key}`} className="hover:text-primary transition-colors">
               {song.attributes.name}
             </Link>
           </p>
-          <p className="mt-0.5 text-[11px] text-text-muted truncate">
+          <p className="mt-0.5 text-[10px] sm:text-[11px] text-text-muted truncate">
             <Link
               to={
                 song.artists

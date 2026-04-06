@@ -41,13 +41,26 @@ const Logo = () => (
   </div>
 );
 
+export const MobileMenuButton = ({ onClick, isOpen }) => (
+  <button
+    onClick={onClick}
+    className="md:hidden w-8 h-8 flex items-center justify-center bg-surface border-2 border-border rounded-[10px] shadow-retro-sm flex-shrink-0"
+  >
+    {isOpen ? (
+      <RiCloseLine className="text-text-primary text-base" />
+    ) : (
+      <HiOutlineMenu className="text-text-primary text-base" />
+    )}
+  </button>
+);
+
 const Sidebar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
       {/* Desktop */}
-      <div className="md:flex hidden flex-col w-[210px] min-h-screen bg-card border-r-2 border-border">
+      <div className="md:flex hidden flex-col w-[210px] min-h-screen bg-card border-r-2 border-border flex-shrink-0">
         <Link to="/" className="block px-4 pt-5 pb-1">
           <Logo />
         </Link>
@@ -59,31 +72,22 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Mobile Button */}
-      <div className="fixed md:hidden top-3 right-3 z-20">
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="w-9 h-9 flex items-center justify-center bg-card border-2 border-border rounded-[10px] shadow-retro-sm"
-        >
-          {mobileOpen ? (
-            <RiCloseLine className="text-text-primary text-lg" />
-          ) : (
-            <HiOutlineMenu className="text-text-primary text-lg" />
-          )}
-        </button>
+      {/* Mobile Menu Button - rendered inside Searchbar via export */}
+      <div className="fixed md:hidden top-2 right-3 z-30">
+        <MobileMenuButton onClick={() => setMobileOpen(!mobileOpen)} isOpen={mobileOpen} />
       </div>
 
       {/* Mobile Overlay */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 bg-black/25 z-10 md:hidden backdrop-blur-sm"
+          className="fixed inset-0 bg-black/25 z-20 md:hidden backdrop-blur-sm"
           onClick={() => setMobileOpen(false)}
         />
       )}
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-0 h-screen w-[240px] bg-card border-r-2 border-border z-20 p-4 md:hidden smooth-transition ${
+        className={`fixed top-0 h-screen w-[240px] bg-card border-r-2 border-border z-30 p-4 md:hidden smooth-transition ${
           mobileOpen ? "left-0" : "-left-full"
         }`}
       >

@@ -5,9 +5,9 @@ const DetailsTitle = ({ artistId, artistData, songData }) => {
   const artistPath = artistData?.attributes;
 
   return (
-    <div className="w-full mb-5">
-      <div className="retro-card p-4 flex flex-col sm:flex-row items-center gap-4">
-        <div className="w-28 h-28 rounded-retro border-2 border-border overflow-hidden flex-shrink-0">
+    <div className="w-full mb-4 sm:mb-5">
+      <div className="retro-card p-3 sm:p-4 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+        <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-retro-sm sm:rounded-retro border-2 border-border overflow-hidden flex-shrink-0">
           <img
             src={
               artistId
@@ -21,19 +21,19 @@ const DetailsTitle = ({ artistId, artistData, songData }) => {
           />
         </div>
         <div className="text-center sm:text-left">
-          <h1 className="font-bold text-xl text-text-primary">
+          <h1 className="font-bold text-lg sm:text-xl text-text-primary">
             {artistId ? artistPath?.name : songData?.title}
           </h1>
           {!artistId && (
             <Link
               to={`/artists/${songData?.artists[0].adamid}`}
-              className="text-sm text-primary hover:text-primary-dark transition-colors font-semibold"
+              className="text-[13px] sm:text-sm text-primary hover:text-primary-dark transition-colors font-semibold"
             >
               {songData?.subtitle}
             </Link>
           )}
           <div className="mt-1.5">
-            <span className="retro-badge bg-primary/10 text-primary border-primary/30">
+            <span className="retro-badge bg-primary/10 text-primary border-primary/30 text-[10px] sm:text-xs">
               {artistData
                 ? artistPath?.genreNames[0]
                 : songData?.genres?.primary}

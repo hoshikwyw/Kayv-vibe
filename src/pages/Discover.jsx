@@ -28,10 +28,10 @@ const Discover = () => {
   return (
     <div className="flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between gap-4 mt-4 mb-6">
-        <div>
-          <h2 className="text-2xl font-bold text-text-primary">Discover</h2>
-          <p className="text-[11px] text-text-muted mt-0.5 font-retro-mono">
+      <div className="flex items-center justify-between gap-3 mt-2 sm:mt-4 mb-4 sm:mb-6">
+        <div className="min-w-0">
+          <h2 className="text-xl sm:text-2xl font-bold text-text-primary">Discover</h2>
+          <p className="text-[10px] sm:text-[11px] text-text-muted mt-0.5 font-retro-mono hidden sm:block">
             FIND YOUR NEXT FAVORITE TRACK
           </p>
         </div>
@@ -50,7 +50,7 @@ const Discover = () => {
         <Loader />
       ) : error ? (
         error?.status === 429 ? (
-          <div className="retro-card p-5 text-center">
+          <div className="retro-card p-4 sm:p-5 text-center">
             <p className="font-bold text-text-primary text-sm">
               Too many requests — take some rest
             </p>
@@ -61,11 +61,11 @@ const Discover = () => {
         )
       ) : (
         <>
-          <div className="retro-badge mb-4">
+          <div className="retro-badge mb-3 sm:mb-4 text-[10px] sm:text-xs">
             {Math.min(end, total)} of {total} songs
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 2xl:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
             {paginatedData?.map((song, i) => (
               <SongCard
                 key={i}
@@ -79,21 +79,21 @@ const Discover = () => {
           </div>
 
           {/* Pagination */}
-          <div className="flex items-center justify-center gap-3 mt-6 mb-4">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mt-5 sm:mt-6 mb-4">
             <button
               disabled={page === 1}
               onClick={() => setPage((p) => p - 1)}
-              className="retro-btn"
+              className="retro-btn !px-3 !py-1.5 sm:!px-4 sm:!py-2 !text-xs sm:!text-sm"
             >
-              Previous
+              Prev
             </button>
-            <span className="retro-badge bg-primary text-white border-primary">
+            <span className="retro-badge bg-primary text-white border-primary text-[10px] sm:text-xs">
               {page} / {Math.ceil(total / pageSize)}
             </span>
             <button
               disabled={end >= total}
               onClick={() => setPage((p) => p + 1)}
-              className="retro-btn"
+              className="retro-btn !px-3 !py-1.5 sm:!px-4 sm:!py-2 !text-xs sm:!text-sm"
             >
               Next
             </button>

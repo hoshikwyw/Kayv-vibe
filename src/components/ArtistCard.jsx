@@ -6,22 +6,22 @@ const ArtistCard = ({ track }) => {
 
   return (
     <div
-      className="w-[calc(50%-8px)] sm:w-[170px] animate-slideup cursor-pointer"
+      className="animate-slideup cursor-pointer"
       onClick={() => navigate(`/artists/${track?.artists[0].adamid}`)}
     >
-      <div className="retro-card-interactive p-2.5">
-        <div className="w-full aspect-square overflow-hidden rounded-[10px]">
+      <div className="retro-card-interactive p-2 sm:p-2.5">
+        <div className="w-full aspect-square overflow-hidden rounded-lg sm:rounded-[10px]">
           <img
             alt={track?.subtitle}
             src={track?.images?.background}
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="mt-2 px-0.5">
-          <p className="text-[13px] font-bold text-text-primary truncate">
+        <div className="mt-1.5 sm:mt-2 px-0.5">
+          <p className="text-[12px] sm:text-[13px] font-bold text-text-primary truncate">
             {track?.subtitle}
           </p>
-          <p className="text-[10px] text-text-muted font-retro-mono mt-0.5">ARTIST</p>
+          <p className="text-[9px] sm:text-[10px] text-text-muted font-retro-mono mt-0.5">ARTIST</p>
         </div>
       </div>
     </div>

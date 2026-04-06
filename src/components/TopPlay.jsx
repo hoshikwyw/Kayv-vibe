@@ -36,16 +36,16 @@ const TopPlay = () => {
   return (
     <div
       ref={divRef}
-      className="xl:ml-5 ml-0 xl:mb-0 mb-5 flex-1 xl:max-w-[340px] max-w-full flex flex-col gap-3"
+      className="lg:w-[300px] xl:w-[320px] max-w-full flex flex-col md:flex-row lg:flex-col gap-2 sm:gap-3 mt-4 lg:mt-0 mb-6 lg:mb-0"
     >
       {/* Charts */}
-      <div className="retro-card p-3">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-bold text-text-primary flex items-center gap-1.5">
+      <div className="retro-card p-2.5 sm:p-3 flex-1 lg:flex-none">
+        <div className="flex items-center justify-between mb-2 sm:mb-3">
+          <h3 className="text-[13px] sm:text-sm font-bold text-text-primary flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
             Charts
           </h3>
-          <Link to="/charts" className="text-[10px] font-bold text-primary hover:text-primary-dark transition-colors font-retro-mono">
+          <Link to="/charts" className="text-[9px] sm:text-[10px] font-bold text-primary hover:text-primary-dark transition-colors font-retro-mono">
             SEE MORE
           </Link>
         </div>
@@ -65,42 +65,59 @@ const TopPlay = () => {
       </div>
 
       {/* Artists */}
-      <div className="retro-card p-3">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-bold text-text-primary flex items-center gap-1.5">
+      <div className="retro-card p-2.5 sm:p-3 md:w-[260px] md:flex-shrink-0 lg:w-auto">
+        <div className="flex items-center justify-between mb-2 sm:mb-3">
+          <h3 className="text-[13px] sm:text-sm font-bold text-text-primary flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
             Top Artists
           </h3>
-          <Link to="/artists" className="text-[10px] font-bold text-primary hover:text-primary-dark transition-colors font-retro-mono">
+          <Link to="/artists" className="text-[9px] sm:text-[10px] font-bold text-primary hover:text-primary-dark transition-colors font-retro-mono">
             SEE MORE
           </Link>
         </div>
-        <Swiper
-          slidesPerView="auto"
-          spaceBetween={10}
-          freeMode
-          centeredSlides
-          centeredSlidesBounds
-          modules={[FreeMode]}
-        >
+        {/* Swiper on md (horizontal below content) */}
+        <div className="md:hidden lg:block">
+          <Swiper
+            slidesPerView="auto"
+            spaceBetween={8}
+            freeMode
+            centeredSlides
+            centeredSlidesBounds
+            modules={[FreeMode]}
+          >
+            {topArtists?.map((artist) => (
+              <SwiperSlide
+                key={artist?.key}
+                style={{ width: "48px", height: "auto" }}
+                className="animate-slideright"
+              >
+                <Link to={`/artists/${artist?.artists[0].adamid}`}>
+                  <div className="w-12 h-12 rounded-full border-2 border-border overflow-hidden hover:border-primary transition-colors">
+                    <img
+                      src={artist?.images.background}
+                      alt="artist"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        {/* Grid for md-only (when below content) */}
+        <div className="hidden md:grid lg:hidden grid-cols-4 gap-2">
           {topArtists?.map((artist) => (
-            <SwiperSlide
-              key={artist?.key}
-              style={{ width: "56px", height: "auto" }}
-              className="animate-slideright"
-            >
-              <Link to={`/artists/${artist?.artists[0].adamid}`}>
-                <div className="w-14 h-14 rounded-full border-2 border-border overflow-hidden hover:border-primary transition-colors">
-                  <img
-                    src={artist?.images.background}
-                    alt="artist"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </Link>
-            </SwiperSlide>
+            <Link key={artist?.key} to={`/artists/${artist?.artists[0].adamid}`}>
+              <div className="w-full aspect-square rounded-full border-2 border-border overflow-hidden hover:border-primary transition-colors">
+                <img
+                  src={artist?.images.background}
+                  alt="artist"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </Link>
           ))}
-        </Swiper>
+        </div>
       </div>
     </div>
   );

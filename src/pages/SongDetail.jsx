@@ -44,25 +44,25 @@ const SongDetail = () => {
   if (errorInRelate || errorInSongD) return <Error />;
 
   return (
-    <div className="flex flex-col mt-4">
+    <div className="flex flex-col mt-2 sm:mt-4">
       <DetailsTitle artistId="" songData={songData} />
 
-      <div className="retro-card p-4 mb-5">
-        <h2 className="text-lg font-bold text-text-primary flex items-center gap-1.5 mb-3">
+      <div className="retro-card p-3 sm:p-4 mb-4 sm:mb-5">
+        <h2 className="text-base sm:text-lg font-bold text-text-primary flex items-center gap-1.5 mb-2 sm:mb-3">
           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
           Lyrics
         </h2>
-        <div className="retro-divider mb-3" />
+        <div className="retro-divider mb-2 sm:mb-3" />
         {songData?.sections[1].type === "LYRICS" ? (
           <div className="space-y-0.5">
             {songData?.sections[1].text.map((line, i) => (
-              <p key={i} className="text-sm text-text-secondary leading-relaxed">
+              <p key={i} className="text-[13px] sm:text-sm text-text-secondary leading-relaxed">
                 {line}
               </p>
             ))}
           </div>
         ) : (
-          <p className="text-sm text-text-muted italic">
+          <p className="text-[13px] sm:text-sm text-text-muted italic">
             No lyrics available for this song.
           </p>
         )}

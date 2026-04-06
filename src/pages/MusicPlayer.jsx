@@ -47,14 +47,16 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className="relative px-4 md:px-6 w-full flex items-center justify-between">
+    <div className="relative px-3 sm:px-4 md:px-6 w-full flex items-center justify-between gap-2 sm:gap-4">
+      {/* Track info */}
       <Track
         isPlaying={isPlaying}
         isActive={isActive}
         activeSong={activeSong}
       />
 
-      <div className="flex-1 flex flex-col items-center justify-center gap-0.5">
+      {/* Center: controls + seekbar */}
+      <div className="flex items-center gap-2 sm:flex-1 sm:flex-col sm:items-center sm:justify-center sm:gap-0.5">
         <ControlBtns
           isPlaying={isPlaying}
           isActive={isActive}
@@ -67,14 +69,16 @@ const MusicPlayer = () => {
           handleNext={handleNext}
           handlePrev={handlePrev}
         />
-        <Seekbar
-          value={appTime}
-          min="0"
-          max={playTime}
-          onInput={(event) => setSeekTime(event.target.value)}
-          setSeekTime={setSeekTime}
-          appTime={appTime}
-        />
+        <div className="hidden sm:flex w-full justify-center">
+          <Seekbar
+            value={appTime}
+            min="0"
+            max={playTime}
+            onInput={(event) => setSeekTime(event.target.value)}
+            setSeekTime={setSeekTime}
+            appTime={appTime}
+          />
+        </div>
         <PlayBtn
           activeSong={activeSong}
           volume={volume}
@@ -88,6 +92,7 @@ const MusicPlayer = () => {
         />
       </div>
 
+      {/* Volume (desktop only) */}
       <Volumebar
         value={volume}
         min="0"
