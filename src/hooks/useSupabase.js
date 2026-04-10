@@ -406,3 +406,195 @@ export function useUnlikeSong() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["likedSongs"] }),
   });
 }
+
+// ============================================
+// Admin CRUD hooks
+// ============================================
+
+// --- Songs ---
+export function useAdminSongs() {
+  return useQuery({
+    queryKey: ["admin", "songs"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("songs")
+        .select("*, artists(name), albums(title), categories(name)")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
+}
+
+export function useAddSong() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (song) => {
+      const { error } = await supabase.from("songs").insert(song);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin", "songs"] });
+      queryClient.invalidateQueries({ queryKey: ["songs"] });
+      queryClient.invalidateQueries({ queryKey: ["charts"] });
+    },
+  });
+}
+
+export function useUpdateSong() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, ...updates }) => {
+      const { error } = await supabase.from("songs").update(updates).eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin", "songs"] });
+      queryClient.invalidateQueries({ queryKey: ["songs"] });
+      queryClient.invalidateQueries({ queryKey: ["charts"] });
+    },
+  });
+}
+
+export function useDeleteSong() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id) => {
+      const { error } = await supabase.from("songs").delete().eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin", "songs"] });
+      queryClient.invalidateQueries({ queryKey: ["songs"] });
+      queryClient.invalidateQueries({ queryKey: ["charts"] });
+    },
+  });
+}
+
+// --- Artists ---
+export function useAdminArtists() {
+  return useQuery({
+    queryKey: ["admin", "artists"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("artists")
+        .select("*")
+        .order("name");
+      if (error) throw error;
+      return data;
+    },
+  });
+}
+
+export function useAddArtist() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (artist) => {
+      const { error } = await supabase.from("artists").insert(artist);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin", "artists"] });
+      queryClient.invalidateQueries({ queryKey: ["topArtists"] });
+    },
+  });
+}
+
+export function useUpdateArtist() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, ...updates }) => {
+      const { error } = await supabase.from("artists").update(updates).eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin", "artists"] });
+      queryClient.invalidateQueries({ queryKey: ["topArtists"] });
+    },
+  });
+}
+
+export function useDeleteArtist() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id) => {
+      const { error } = await supabase.from("artists").delete().eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin", "artists"] });
+      queryClient.invalidateQueries({ queryKey: ["topArtists"] });
+    },
+  });
+}
+
+// --- Albums ---
+export function useAdminAlbums() {
+  return useQuery({
+    queryKey: ["admin", "albums"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("albums")
+        .select("*, artists(name)")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
+}
+
+export function useAddAlbum() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (album) => {
+      const { error } = await supabase.from("albums").insert(album);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin", "albums"] });
+      queryClient.invalidateQueries({ queryKey: ["topAlbums"] });
+    },
+  });
+}
+
+export function useUpdateAlbum() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, ...updates }) => {
+      const { error } = await supabase.from("albums").update(updates).eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin", "albums"] });
+      queryClient.invalidateQueries({ queryKey: ["topAlbums"] });
+    },
+  });
+}
+
+export function useDeleteAlbum() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id) => {
+      const { error } = await supabase.from("albums").delete().eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin", "albums"] });
+      queryClient.invalidateQueries({ queryKey: ["topAlbums"] });
+    },
+  });
+}
+
+// --- File upload to Supabase Storage ---
+export function useUploadFile() {
+  return useMutation({
+    mutationFn: async ({ bucket, path, file }) => {
+      const { data, error } = await supabase.storage
+        .from(bucket)
+        .upload(path, file, { upsert: true });
+      if (error) throw error;
+      const { data: urlData } = supabase.storage.from(bucket).getPublicUrl(data.path);
+      return urlData.publicUrl;
+    },
+  });
+}

@@ -13,6 +13,7 @@ import Charts from './pages/Charts'
 import Liked from './pages/Liked'
 import Search from './pages/Search'
 import NowPlaying from './pages/NowPlaying'
+import AdminDashboard from './pages/AdminDashboard'
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player)
@@ -41,6 +42,7 @@ const App = () => {
               <Route path='/liked' element={<Liked />} />
               <Route path='/search/:searchTerm' element={<Search />} />
               <Route path='/now-playing' element={<NowPlaying />} />
+              <Route path='/superadmin' element={<AdminDashboard />} />
             </Routes>
           </div>
           <div className="hidden lg:block lg:sticky lg:top-0 self-start lg:max-h-[calc(100vh-48px)] lg:overflow-y-auto hide-scrollbar flex-shrink-0 lg:pr-4 lg:pt-4">

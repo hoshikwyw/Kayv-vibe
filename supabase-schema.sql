@@ -167,6 +167,17 @@ create policy "Public delete" on liked_songs for delete using (true);
 -- Allow the increment function to update songs
 create policy "Public update play_count" on songs for update using (true) with check (true);
 
+-- Admin write access (songs, artists, albums)
+-- Note: In production, restrict these with auth checks instead of public access
+create policy "Public insert" on songs for insert with check (true);
+create policy "Public delete" on songs for delete using (true);
+create policy "Public insert" on artists for insert with check (true);
+create policy "Public update" on artists for update using (true) with check (true);
+create policy "Public delete" on artists for delete using (true);
+create policy "Public insert" on albums for insert with check (true);
+create policy "Public update" on albums for update using (true) with check (true);
+create policy "Public delete" on albums for delete using (true);
+
 -- ============================================
 -- Storage Buckets (create in Supabase Dashboard > Storage)
 --   1. "audio"  — public bucket for MP3/WAV files
