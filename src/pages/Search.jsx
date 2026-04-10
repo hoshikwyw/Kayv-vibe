@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useSearchSongQuery } from '../redux/services/dataFetch';
+import { useSearchSongs } from '../hooks/useSupabase';
 import Loader from '../components/Loader';
 import Error from '../components/Error';
 import SongCard from '../components/SongCard';
@@ -10,12 +10,9 @@ import { FiSearch } from 'react-icons/fi';
 const Search = () => {
   const { searchTerm } = useParams();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, error, isLoading } = useSearchSongQuery(searchTerm);
+  const { data: songs, isFetching, error, isLoading } = useSearchSongs(searchTerm);
 
-  const songs = data?.tracks?.hits.map((song) => song.track);
-
-  if (isFetching) return <Loader />;
-  if (isLoading) return <Loader />;
+  if (isFetching || isLoading) return <Loader />;
   if (error) return <Error />;
 
   return (
@@ -31,13 +28,13 @@ const Search = () => {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
-        {songs.map((song, i) => (
+        {songs?.map((song, i) => (
           <SongCard
             key={song.key}
             song={song}
             isPlaying={isPlaying}
             activeSong={activeSong}
-            data={data}
+            data={songs}
             i={i}
           />
         ))}

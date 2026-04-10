@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import DetailsTitle from "../components/DetailsTitle";
-import { useGetArtistDetailQuery } from "../redux/services/dataFetch";
+import { useArtistDetail } from "../hooks/useSupabase";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import RelateSong from "../components/RelateSong";
@@ -16,7 +16,7 @@ const ArtistDetail = () => {
     isLoading: isLoadingArtist,
     isFetching: isFetchingArtist,
     error: errorInArtist,
-  } = useGetArtistDetailQuery({ artistId });
+  } = useArtistDetail(artistId);
 
   if (isFetchingArtist) return <Loader />;
   if (isLoadingArtist) return <Loader />;

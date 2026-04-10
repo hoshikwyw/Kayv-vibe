@@ -2,22 +2,17 @@ import React, { useState } from "react";
 import { genres } from "../assets/constants";
 import SongCard from "../components/SongCard";
 import RetroDropdown from "../components/RetroDropdown";
-import { useGetChartTracksQuery, useGetCitiesQuery } from "../redux/services/dataFetch";
+import { useSongs } from "../hooks/useSupabase";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import { useSelector } from "react-redux";
-import { skipToken } from "@reduxjs/toolkit/query";
 
 const Discover = () => {
   const [genre, setGenre] = useState("POP");
   const [page, setPage] = useState(1);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
-  const { data, isFetching, isLoading, error } = useGetChartTracksQuery(
-    genre ? { genre } : skipToken
-  );
-
-  const { data: cities } = useGetCitiesQuery();
+  const { data, isFetching, isLoading, error } = useSongs(genre);
 
   const pageSize = 20;
   const total = data?.length || 0;
@@ -49,16 +44,7 @@ const Discover = () => {
       {isFetching || isLoading ? (
         <Loader />
       ) : error ? (
-        error?.status === 429 ? (
-          <div className="retro-card p-4 sm:p-5 text-center">
-            <p className="font-bold text-text-primary text-sm">
-              Too many requests — take some rest
-            </p>
-            <p className="text-xs text-text-muted mt-1">Try again in a moment</p>
-          </div>
-        ) : (
-          <Error />
-        )
+        <Error />
       ) : (
         <>
           <div className="flex items-center gap-3 mb-3 sm:mb-4">
@@ -71,7 +57,7 @@ const Discover = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
             {paginatedData?.map((song, i) => (
               <SongCard
-                key={i}
+                key={song.key}
                 song={song}
                 data={data}
                 i={i}

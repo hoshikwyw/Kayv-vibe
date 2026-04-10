@@ -2,13 +2,15 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { playPause, setActiveSong } from '../redux/services/PlayerSlice'
-import { BsFillPlayFill, BsFillPauseFill, BsTrophy, BsHeadphones } from 'react-icons/bs'
-import chartsMock from '../mocks/charts.json'
+import { BsFillPlayFill, BsFillPauseFill, BsTrophy } from 'react-icons/bs'
+import { useChartSongs } from '../hooks/useSupabase'
+import Loader from '../components/Loader'
+import Error from '../components/Error'
 
 const Charts = () => {
   const dispatch = useDispatch()
   const { activeSong, isPlaying } = useSelector(state => state.player)
-  const chartSongs = chartsMock
+  const { data: chartSongs, isLoading, error } = useChartSongs()
 
   const handlePlay = (song, i) => {
     dispatch(setActiveSong({ song, data: chartSongs, i }))
@@ -21,8 +23,11 @@ const Charts = () => {
 
   const isCurrentSong = (song) => activeSong?.attributes?.name === song.attributes?.name
 
-  const top3 = chartSongs.slice(0, 3)
-  const rest = chartSongs.slice(3)
+  if (isLoading) return <Loader />
+  if (error) return <Error />
+
+  const top3 = chartSongs?.slice(0, 3) || []
+  const rest = chartSongs?.slice(3) || []
 
   return (
     <div className="flex flex-col">

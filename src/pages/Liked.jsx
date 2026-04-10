@@ -1,12 +1,17 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import SongCard from '../components/SongCard'
-import likedMock from '../mocks/liked.json'
+import { useLikedSongs } from '../hooks/useSupabase'
 import { BsHeartFill } from 'react-icons/bs'
+import Loader from '../components/Loader'
+import Error from '../components/Error'
 
 const Liked = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player)
-  const likedSongs = likedMock
+  const { data: likedSongs, isLoading, error } = useLikedSongs()
+
+  if (isLoading) return <Loader />
+  if (error) return <Error />
 
   return (
     <div className="flex flex-col">
@@ -21,7 +26,7 @@ const Liked = () => {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
-        {likedSongs.map((song, i) => (
+        {likedSongs?.map((song, i) => (
           <SongCard
             key={`${song.key}-${i}`}
             song={song}

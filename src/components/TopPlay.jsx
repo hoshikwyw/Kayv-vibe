@@ -7,13 +7,15 @@ import "swiper/css/free-mode";
 import { playPause, setActiveSong } from "../redux/services/PlayerSlice";
 import { Link } from "react-router-dom";
 import TopPlayCard from "./TopPlayCard";
-import chartsMock from "../mocks/charts.json";
-import artistsMock from "../mocks/artists.json";
+import { useChartSongs, useArtists } from "../hooks/useSupabase";
 
 const TopPlay = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const divRef = useRef(null);
+
+  const { data: chartSongs } = useChartSongs();
+  const { data: artistsData } = useArtists();
 
   useEffect(() => {
     if (divRef.current) {
@@ -21,8 +23,8 @@ const TopPlay = () => {
     }
   }, []);
 
-  const topPlays = chartsMock.slice(0, 5);
-  const topArtists = artistsMock.slice(0, 8);
+  const topPlays = chartSongs?.slice(0, 5) || [];
+  const topArtists = artistsData?.slice(0, 8) || [];
 
   const handlePauseBtn = () => {
     dispatch(playPause(false));

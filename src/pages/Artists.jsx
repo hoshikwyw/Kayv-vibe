@@ -1,11 +1,16 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import ArtistCard from '../components/ArtistCard'
-import artistsMock from '../mocks/artists.json'
+import { useArtists } from '../hooks/useSupabase'
+import Loader from '../components/Loader'
+import Error from '../components/Error'
 
 const Artists = () => {
   const { activeSong, isPlaying } = useSelector(state => state.player)
-  const artists = artistsMock
+  const { data: artists, isLoading, error } = useArtists()
+
+  if (isLoading) return <Loader />
+  if (error) return <Error />
 
   return (
     <div className="flex flex-col">
@@ -17,7 +22,7 @@ const Artists = () => {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
-        {artists.map((track) => (
+        {artists?.map((track) => (
           <ArtistCard key={track.key} track={track} />
         ))}
       </div>

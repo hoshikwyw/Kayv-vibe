@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import DetailsTitle from "../components/DetailsTitle";
 import { setActiveSong, playPause } from "../redux/services/PlayerSlice";
-import {
-  useGetRelateSongQuery,
-  useGetSongDetailQuery,
-} from "../redux/services/dataFetch";
+import { useSongDetail, useRelatedSongs } from "../hooks/useSupabase";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import RelateSong from "../components/RelateSong";
@@ -17,31 +14,31 @@ const SongDetail = () => {
   const { songid } = useParams();
 
   const {
-    data,
-    isFetching: isFetchingRelateSong,
-    isLoading: isLoadingRelate,
-    error: errorInRelate,
-  } = useGetRelateSongQuery({ songid });
+    data: relatedData,
+    isFetching: isFetchingRelated,
+    isLoading: isLoadingRelated,
+    error: errorRelated,
+  } = useRelatedSongs(songid);
 
   const {
     data: songData,
-    isLoading: isLoadingSongD,
-    isFetching: isFetchingSongD,
-    error: errorInSongD,
-  } = useGetSongDetailQuery({ songid });
+    isLoading: isLoadingSong,
+    isFetching: isFetchingSong,
+    error: errorSong,
+  } = useSongDetail(songid);
 
   const handlePauseBtn = () => {
     dispatch(playPause(false));
   };
 
   const handlePlayBtn = (song, i) => {
-    dispatch(setActiveSong({ song, data, i }));
+    dispatch(setActiveSong({ song, data: relatedData, i }));
     dispatch(playPause(true));
   };
 
-  if (isFetchingSongD || isFetchingRelateSong) return <Loader />;
-  if (isLoadingSongD || isLoadingRelate) return <Loader />;
-  if (errorInRelate || errorInSongD) return <Error />;
+  if (isFetchingSong || isFetchingRelated) return <Loader />;
+  if (isLoadingSong || isLoadingRelated) return <Loader />;
+  if (errorRelated || errorSong) return <Error />;
 
   return (
     <div className="flex flex-col mt-2 sm:mt-4">
@@ -69,7 +66,7 @@ const SongDetail = () => {
       </div>
 
       <RelateSong
-        data={data}
+        data={relatedData}
         isPlaying={isPlaying}
         activeSong={activeSong}
         handlePauseBtn={handlePauseBtn}
