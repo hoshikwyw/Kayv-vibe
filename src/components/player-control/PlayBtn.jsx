@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { useTrackPlay } from "../../hooks/useSupabase";
 
 const PlayBtn = ({
   activeSong,
@@ -11,14 +12,23 @@ const PlayBtn = ({
   repeat,
 }) => {
   const ref = useRef(null);
+  const trackedRef = useRef(null);
+  const { mutate: trackPlay } = useTrackPlay();
 
-  // ✅ Pick correct audio source (Shazam or Apple Music)
   const audioSrc =
-    activeSong?.hub?.actions?.find((a) => a.type === "uri")?.uri || // Shazam
-    activeSong?.attributes?.previews?.[0]?.url || // Apple Music
+    activeSong?.hub?.actions?.find((a) => a.type === "uri")?.uri ||
+    activeSong?.attributes?.previews?.[0]?.url ||
     "";
 
-  // ✅ Handle play / pause
+  // Track play count when song starts playing
+  useEffect(() => {
+    if (isPlaying && activeSong?.key && trackedRef.current !== activeSong.key) {
+      trackedRef.current = activeSong.key;
+      trackPlay(activeSong.key);
+    }
+  }, [isPlaying, activeSong?.key, trackPlay]);
+
+  // Handle play / pause
   useEffect(() => {
     if (ref.current) {
       if (isPlaying) {
@@ -31,14 +41,14 @@ const PlayBtn = ({
     }
   }, [isPlaying, audioSrc]);
 
-  // ✅ Sync volume
+  // Sync volume
   useEffect(() => {
     if (ref.current) {
       ref.current.volume = volume;
     }
   }, [volume]);
 
-  // ✅ Sync seek time
+  // Sync seek time
   useEffect(() => {
     if (ref.current && seekTime >= 0) {
       ref.current.currentTime = seekTime;
